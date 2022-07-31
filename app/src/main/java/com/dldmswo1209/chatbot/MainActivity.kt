@@ -1,5 +1,6 @@
 package com.dldmswo1209.chatbot
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,5 +37,9 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragmentContainerView, fragment)
                 commit()
             }
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }

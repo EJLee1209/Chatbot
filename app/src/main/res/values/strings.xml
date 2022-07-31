@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Chatbot</string>
-    <string name="title">Title</string>
+    <string name="title">우리</string>
     <string name="little_title">Little Title</string>
     <string name="whatHappen">오늘은 무슨 일이 있었니?</string>
     <string name="input_text_hint">Intput text</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo_title">오늘의 할 일</string>
+    <string name="todo_second_title">오늘은 이런 일을 했어요</string>
+    <string name="todo_recommend_title">이런 것도 해보는 건 어때요?</string>
 </resources>
