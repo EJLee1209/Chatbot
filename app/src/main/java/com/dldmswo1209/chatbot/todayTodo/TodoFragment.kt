@@ -1,13 +1,15 @@
 package com.dldmswo1209.chatbot.todayTodo
 
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.FragmentTodoBinding
 
@@ -16,6 +18,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     private lateinit var binding : FragmentTodoBinding
     private val todoAdapter = TodoListAdapter()
     private val recommendAdapter = RecommendListAdapter()
+    private val recommendDetailAdapter = RecommendDetailListAdapter()
     private val todayWorkList = mutableListOf(
         TodoItem("동네를 한바퀴 산책하기","한바퀴 산책하면서 바람 맞았어요"),
         TodoItem("맛있는 간식 먹기","오늘도 수고한 나에게 맛있는 간식을 선물해요"),
@@ -49,16 +52,13 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         buttonClickEvent()
     }
     private fun buttonClickEvent(){
-        binding.RecommendArrowRightButton.setOnClickListener {
-
-        }
         binding.todoArrowRightButton.setOnClickListener {
             binding.recommendRecyclerView.isGone = true
             binding.todoRecommendTitle.isGone = true
             binding.RecommendArrowRightButton.isGone = true
             binding.todoArrowRightButton.isGone = true
             binding.todoArrowLeftButton.isVisible = true
-            val layoutPrams = binding.todoTodayWorkRecyclerView.layoutParams
+            val layoutParams = binding.todoTodayWorkRecyclerView.layoutParams
             val height =
                 TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
@@ -66,27 +66,12 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                     resources.displayMetrics
                 ).toInt()
 
-            layoutPrams.height = height
-            binding.todoTodayWorkRecyclerView.layoutParams = layoutPrams
+            layoutParams.height = height
+            binding.todoTodayWorkRecyclerView.layoutParams = layoutParams
 
         }
         binding.todoArrowLeftButton.setOnClickListener {
-            binding.recommendRecyclerView.isVisible = true
-            binding.todoRecommendTitle.isVisible = true
-            binding.RecommendArrowRightButton.isVisible = true
-            binding.todoArrowRightButton.isVisible = true
-            binding.todoArrowLeftButton.isGone = true
-            val layoutPrams = binding.todoTodayWorkRecyclerView.layoutParams
-            val height =
-                TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    448F,
-                    resources.displayMetrics
-                ).toInt()
-
-            layoutPrams.height = height
-            binding.todoTodayWorkRecyclerView.layoutParams = layoutPrams
-
+            (activity as MainActivity).refreshFragment()
         }
         recommendAdapter.setOnItemClickListener(object: OnItemClickListener{
             override fun onItemClick(
@@ -98,9 +83,44 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                 todayWorkList.add(newItem)
                 todoAdapter.submitList(todayWorkList)
                 todoAdapter.notifyDataSetChanged()
-
+                Toast.makeText(requireContext(),"할 일을 추가했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+        recommendDetailAdapter.setOnItemClickListener(object: OnDetailItemClickListener{
+            override fun onItemClick(
+                holder: RecommendDetailListAdapter.ViewHolder,
+                view: View,
+                position: Int
+            ) {
+                val newItem = recommendDetailAdapter.currentList[position] ?: return
+                todayWorkList.add(newItem)
+                todoAdapter.submitList(todayWorkList)
+                todoAdapter.notifyDataSetChanged()
+                Toast.makeText(requireContext(),"할 일을 추가했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        })
+        binding.RecommendArrowRightButton.setOnClickListener {
+            binding.todoSecondTitle.isGone = true
+            binding.todoArrowRightButton.isGone = true
+            binding.todoTodayWorkRecyclerView.isGone = true
+            binding.RecommendArrowRightButton.isGone = true
+            binding.todoArrowLeftButton.isVisible = true
+            recommendDetailAdapter.submitList(recommendList)
+
+            val layoutParams = binding.recommendRecyclerView.layoutParams
+            layoutParams.height =
+                TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    680f,
+                    resources.displayMetrics
+                ).toInt()
+            binding.recommendRecyclerView.apply {
+                adapter = recommendDetailAdapter
+                layoutManager = GridLayoutManager(requireContext(), 2)
+                setHasFixedSize(true)
+                setLayoutParams(layoutParams)
+            }
+        }
 
     }
 

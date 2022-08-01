@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatbot">
         <activity
+            android:name=".chatRoom.ChatRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".todayTodo.TodayWorkActivity"
             android:exported="false" />
         <activity

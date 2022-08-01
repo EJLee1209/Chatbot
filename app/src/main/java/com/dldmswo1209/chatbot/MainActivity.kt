@@ -3,7 +3,10 @@ package com.dldmswo1209.chatbot
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
 import com.dldmswo1209.chatbot.emotionCalendar.CalendarFragment
 import com.dldmswo1209.chatbot.home.HomeFragment
@@ -37,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragmentContainerView, fragment)
                 commit()
             }
+    }
+    fun refreshFragment(){
+        replaceFragment(TodoFragment())
     }
 
     override fun onPause() {

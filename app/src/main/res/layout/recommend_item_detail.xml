@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="146dp"
+    android:layout_height="193dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@drawable/rectangle_1"
+    android:layout_marginBottom="12dp"
+    android:layout_marginStart="14dp">
+    <TextView
+        android:id="@+id/recommendTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="숙제하기"
+        android:textSize="16sp"
+        android:textColor="@color/title_color"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="5dp"/>
+
+    <ImageView
+        android:id="@+id/recommendPlusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plus_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="11dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home.HomeFragment">
+    tools:context=".home.HomeFragment"
+    android:background="@color/background_white">
 
     <ImageView
         android:id="@+id/chatImageButton"
@@ -45,20 +46,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="70dp"
         android:background="@drawable/text_bubble"/>
-    <ImageView
-        android:id="@+id/mainImageView"
+
+
+    <FrameLayout
+        android:id="@+id/mainImageFrameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/placeholder"
-        app:layout_constraintTop_toBottomOf="@id/mainSpeechBubble"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="18dp"/>
+        android:layout_marginBottom="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/group_8" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/character"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mainImageView"
+        app:layout_constraintTop_toBottomOf="@id/mainImageFrameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="18dp"
