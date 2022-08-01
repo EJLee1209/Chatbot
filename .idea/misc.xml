@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/input_text_background.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/text_bubble.xml" value="0.1325" />
