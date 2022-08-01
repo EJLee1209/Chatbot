@@ -40,15 +40,19 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTodoBinding.bind(view)
 
+        // 이 후에 db 에서 todoList 와 recommendList 를 가져와서 전달하면 됨
         todoAdapter.submitList(todayWorkList)
         recommendAdapter.submitList(recommendList)
-        binding.todoTodayWorkRecyclerView.adapter = todoAdapter
-        binding.todoTodayWorkRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recommendRecyclerView.adapter = recommendAdapter
-        val mLayoutManager = LinearLayoutManager(requireContext())
-        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        binding.recommendRecyclerView.layoutManager = mLayoutManager
-
+        binding.todoTodayWorkRecyclerView.apply {
+            adapter = todoAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+        binding.recommendRecyclerView.apply {
+            adapter = recommendAdapter
+            val mLayoutManager = LinearLayoutManager(requireContext())
+            mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            layoutManager = mLayoutManager
+        }
         buttonClickEvent()
     }
     private fun buttonClickEvent(){

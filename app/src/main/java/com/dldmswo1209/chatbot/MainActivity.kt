@@ -45,7 +45,4 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(TodoFragment())
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 }
