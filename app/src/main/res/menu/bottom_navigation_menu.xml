@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/todayTodo"
         android:icon="@drawable/check_square"
+        android:iconTint="@drawable/group_11"
         android:title="@null"/>
     <item android:id="@+id/home"
         android:icon="@drawable/home"
@@ -9,4 +10,5 @@
     <item android:id="@+id/emotionCalendar"
         android:icon="@drawable/edit_3"
         android:title="@null" />
+
 </menu>
