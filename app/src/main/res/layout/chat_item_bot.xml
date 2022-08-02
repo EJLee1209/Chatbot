@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp">
+
+    <TextView
+        android:id="@+id/botChatTextView"
+        android:text="오늘은 무슨 일이 있었니?"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#363636"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_bubble_bot"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

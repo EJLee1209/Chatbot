@@ -66,7 +66,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             val height =
                 TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
-                    680f,
+                    580f,
                     resources.displayMetrics
                 ).toInt()
 
@@ -115,7 +115,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             layoutParams.height =
                 TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
-                    680f,
+                    580f,
                     resources.displayMetrics
                 ).toInt()
             binding.recommendRecyclerView.apply {

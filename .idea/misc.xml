@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-xxxhdpi/chat_bubble_user.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/chat_bubble_bot.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/input_text_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.1325" />
@@ -14,9 +16,11 @@
         <entry key="app/src/main/res/drawable/text_bubble.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/todo_rectangle.xml" value="0.1325" />
         <entry key="app/src/main/res/layout/activity_chat_room.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.305385504828559" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24709235297309023" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_today_work.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/chat_item_bot.xml" value="0.2598868107450181" />
+        <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.19610507246376813" />

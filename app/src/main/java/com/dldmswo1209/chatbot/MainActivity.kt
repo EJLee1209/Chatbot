@@ -15,17 +15,19 @@ import com.dldmswo1209.chatbot.todayTodo.TodoFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-
+    private val todoFragment = TodoFragment()
+    private val homeFragment = HomeFragment()
+    private val calendarFragment = CalendarFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val todoFragment = TodoFragment()
-        val homeFragment = HomeFragment()
-        val calendarFragment = CalendarFragment()
-
         replaceFragment(homeFragment)
+
+        buttonClickEvent()
+    }
+    private fun buttonClickEvent(){
         binding.HomeButton.setOnClickListener {
             replaceFragment(homeFragment)
             binding.selectRectangleHome.isVisible = true
@@ -44,8 +46,6 @@ class MainActivity : AppCompatActivity() {
             binding.selectRectangleTodo.isVisible = false
             binding.selectRectangleCalendar.isVisible = true
         }
-
-
     }
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
