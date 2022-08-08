@@ -29,6 +29,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTodoBinding.bind(view)
 
+        if(todayWorkList.isEmpty()) binding.todoArrowRightButton.isGone = true
         getRandomRecommendList()
         connectRecyclerView()
         buttonClickEvent()
@@ -163,6 +164,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
     }
     private fun addWork(position: Int){
+        if(binding.todoArrowRightButton.isGone) binding.todoArrowRightButton.isVisible = true
         val newItem = recommendAdapter.currentList[position] ?: return
         if(todayWorkList.contains(newItem)) {
             Toast.makeText(requireContext(), "이미 할 일 목록에 추가했습니다.", Toast.LENGTH_SHORT).show()
