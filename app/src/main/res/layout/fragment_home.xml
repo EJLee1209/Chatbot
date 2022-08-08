@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/mainTitleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/text_bubble"/>
 
 
@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="140dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +75,6 @@
         app:layout_constraintTop_toBottomOf="@id/mainImageFrameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="18dp"
         android:background="@drawable/input_text_background"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp">

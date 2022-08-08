@@ -3,6 +3,7 @@ package com.dldmswo1209.chatbot.todayTodo
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.FragmentTodoBinding
+import java.util.*
 
 
 class TodoFragment : Fragment(R.layout.fragment_todo) {
@@ -19,30 +21,21 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     private val todoAdapter = TodoListAdapter()
     private val recommendAdapter = RecommendListAdapter()
     private val recommendDetailAdapter = RecommendDetailListAdapter()
-    private val todayWorkList = mutableListOf(
-        TodoItem("동네를 한바퀴 산책하기","한바퀴 산책하면서 바람 맞았어요"),
-        TodoItem("맛있는 간식 먹기","오늘도 수고한 나에게 맛있는 간식을 선물해요"),
-        TodoItem("나른하게 낮잠자기","낮잠을 자는 것은 피로회복에 큰 도움이 돼요"),
-        TodoItem("즐겁게 샤워하기","샤워를 하며 상쾌한 기분을 느꼈어요!"),
-        TodoItem("친구들과 카페가기","수다를 떨며 스트레스가 사려졌어요"),
-        TodoItem("집에서 푹 쉬기","하루정도 푹 쉬는 것도 좋아요")
-    )
-    private val recommendList = mutableListOf(
-        TodoItem("숙제하기",""),
-        TodoItem("일기쓰기",""),
-        TodoItem("운동하기",""),
-        TodoItem("코딩하기",""),
-        TodoItem("샤워하기",""),
-        TodoItem("카페가기",""),
-    )
+    private val todayWorkList = mutableListOf<TodoItem>()
+    private val randomRecommendWorks = mutableListOf<TodoItem>()
+    private var buttonClickFlag = 0 // 오른쪽 화살표 버튼 2개 중에 어떤 버튼이 눌렸는지 확인하는 플래그 변수
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTodoBinding.bind(view)
 
-        // 이 후에 db 에서 todoList 와 recommendList 를 가져와서 전달하면 됨
+        getRandomRecommendList()
+        connectRecyclerView()
+        buttonClickEvent()
+    }
+    private fun connectRecyclerView(){
         todoAdapter.submitList(todayWorkList)
-        recommendAdapter.submitList(recommendList)
+        recommendAdapter.submitList(randomRecommendWorks)
         binding.todoTodayWorkRecyclerView.apply {
             adapter = todoAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -53,29 +46,84 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             layoutManager = mLayoutManager
         }
-        buttonClickEvent()
+    }
+    private fun getRandomRecommendList(){
+        // 할 일 추천 리스트에서 랜덤 8개를 뽑음
+        val set = mutableSetOf<TodoItem>()
+
+        while(set.size < 8 && randomRecommendWorks.size < 8){
+            val random = Random().nextInt(recommendList.size)
+            set.add(recommendList[random])
+        }
+        set.forEach{
+            randomRecommendWorks.add(it)
+        }
+    }
+    private fun todayWorkCustomLayoutParams(value: Float): ViewGroup.LayoutParams{
+        val layoutParams = binding.todoTodayWorkRecyclerView.layoutParams
+        val height =
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                resources.displayMetrics
+            ).toInt()
+
+        layoutParams.height = height
+        return layoutParams
+    }
+    private fun recommendWorkCustomLayoutParams(value: Float): ViewGroup.LayoutParams{
+        val layoutParams = binding.recommendRecyclerView.layoutParams
+        val height =
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                resources.displayMetrics
+            ).toInt()
+
+        layoutParams.height = height
+        return layoutParams
     }
     private fun buttonClickEvent(){
         binding.todoArrowRightButton.setOnClickListener {
+            buttonClickFlag = 1
             binding.recommendRecyclerView.isGone = true
             binding.todoRecommendTitle.isGone = true
             binding.RecommendArrowRightButton.isGone = true
             binding.todoArrowRightButton.isGone = true
             binding.todoArrowLeftButton.isVisible = true
-            val layoutParams = binding.todoTodayWorkRecyclerView.layoutParams
-            val height =
-                TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    580f,
-                    resources.displayMetrics
-                ).toInt()
 
-            layoutParams.height = height
-            binding.todoTodayWorkRecyclerView.layoutParams = layoutParams
+            binding.todoTodayWorkRecyclerView.layoutParams = todayWorkCustomLayoutParams(580f)
 
         }
         binding.todoArrowLeftButton.setOnClickListener {
-            (activity as MainActivity).refreshFragment()
+            when(buttonClickFlag){
+                1 -> {
+                    binding.recommendRecyclerView.isVisible = true
+                    binding.todoRecommendTitle.isVisible = true
+                    binding.RecommendArrowRightButton.isVisible = true
+                    binding.todoArrowRightButton.isVisible = true
+                    binding.todoArrowLeftButton.isGone = true
+
+                    binding.todoTodayWorkRecyclerView.layoutParams = todayWorkCustomLayoutParams(410f)
+                    buttonClickFlag = 0
+                }
+                2 -> {
+                    binding.todoSecondTitle.isVisible = true
+                    binding.todoArrowRightButton.isVisible = true
+                    binding.todoTodayWorkRecyclerView.isVisible = true
+                    binding.RecommendArrowRightButton.isVisible = true
+                    binding.todoArrowLeftButton.isGone = true
+
+                    binding.recommendRecyclerView.apply {
+                        adapter = recommendAdapter
+                        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                        setHasFixedSize(true)
+                        setLayoutParams(recommendWorkCustomLayoutParams(105f))
+                    }
+                    buttonClickFlag = 0
+                }
+            }
+
         }
         recommendAdapter.setOnItemClickListener(object: OnItemClickListener{
             override fun onItemClick(
@@ -83,11 +131,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                 view: View,
                 position: Int
             ) {
-                val newItem = recommendAdapter.currentList[position] ?: return
-                todayWorkList.add(newItem)
-                todoAdapter.submitList(todayWorkList)
-                todoAdapter.notifyDataSetChanged()
-                Toast.makeText(requireContext(),"할 일을 추가했습니다.", Toast.LENGTH_SHORT).show()
+                addWork(position)
             }
         })
         recommendDetailAdapter.setOnItemClickListener(object: OnDetailItemClickListener{
@@ -96,36 +140,38 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                 view: View,
                 position: Int
             ) {
-                val newItem = recommendDetailAdapter.currentList[position] ?: return
-                todayWorkList.add(newItem)
-                todoAdapter.submitList(todayWorkList)
-                todoAdapter.notifyDataSetChanged()
-                Toast.makeText(requireContext(),"할 일을 추가했습니다.", Toast.LENGTH_SHORT).show()
+                addWork(position)
             }
         })
         binding.RecommendArrowRightButton.setOnClickListener {
+            buttonClickFlag = 2
             binding.todoSecondTitle.isGone = true
             binding.todoArrowRightButton.isGone = true
             binding.todoTodayWorkRecyclerView.isGone = true
             binding.RecommendArrowRightButton.isGone = true
             binding.todoArrowLeftButton.isVisible = true
-            recommendDetailAdapter.submitList(recommendList)
+            recommendDetailAdapter.submitList(randomRecommendWorks)
 
-            val layoutParams = binding.recommendRecyclerView.layoutParams
-            layoutParams.height =
-                TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    580f,
-                    resources.displayMetrics
-                ).toInt()
+
             binding.recommendRecyclerView.apply {
                 adapter = recommendDetailAdapter
                 layoutManager = GridLayoutManager(requireContext(), 2)
                 setHasFixedSize(true)
-                setLayoutParams(layoutParams)
+                setLayoutParams(recommendWorkCustomLayoutParams(580f))
             }
         }
 
+    }
+    private fun addWork(position: Int){
+        val newItem = recommendAdapter.currentList[position] ?: return
+        if(todayWorkList.contains(newItem)) {
+            Toast.makeText(requireContext(), "이미 할 일 목록에 추가했습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        todayWorkList.add(newItem)
+        todoAdapter.submitList(todayWorkList)
+        todoAdapter.notifyDataSetChanged()
+        Toast.makeText(requireContext(),"할 일을 추가했습니다.", Toast.LENGTH_SHORT).show()
     }
 
 }

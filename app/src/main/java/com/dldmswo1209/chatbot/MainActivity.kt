@@ -54,8 +54,5 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
     }
-    fun refreshFragment(){
-        replaceFragment(TodoFragment())
-    }
 
 }
