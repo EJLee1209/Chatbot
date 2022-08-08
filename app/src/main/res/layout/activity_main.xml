@@ -13,20 +13,103 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/menuFrame"
+        android:layout_width="0dp"
+        android:layout_height="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/background_white"
-        app:menu="@menu/bottom_navigation_menu"
-        app:itemIconTint="@drawable/selector_menu"
-        app:itemRippleColor="@null"/>
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/under_background_2"
+            android:scaleType="fitXY"
+            android:layout_gravity="bottom" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/todoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="80dp">
+                <ImageView
+                    android:id="@+id/select_rectangle_todo"
+                    android:layout_width="65dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/select_rectangle"
+                    android:layout_marginBottom="60dp"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/group_11"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check_square"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/HomeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+                <ImageView
+                    android:id="@+id/select_rectangle_home"
+                    android:layout_width="80dp"
+                    android:layout_height="104dp"
+                    android:src="@drawable/select_rectangle"
+                    android:layout_marginBottom="100dp"/>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/group_11"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/calendarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="80dp">
+                <ImageView
+                    android:id="@+id/select_rectangle_calendar"
+                    android:layout_width="65dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/select_rectangle"
+                    android:layout_marginBottom="60dp"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/group_11"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/edit_3"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

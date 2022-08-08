@@ -26,8 +26,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 Toast.makeText(requireContext(), "메시지를 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val intent = Intent(requireContext(), ChatRoomActivity::class.java)
+            intent.putExtra("chat", binding.inputEditTextView.text.toString())
+            startActivity(intent)
             binding.inputEditTextView.text.clear()
-            startActivity(Intent(requireContext(), ChatRoomActivity::class.java))
         }
     }
 
