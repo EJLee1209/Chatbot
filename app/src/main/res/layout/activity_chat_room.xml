@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:src="@drawable/arrow_left"
+        android:src="@drawable/left_arrow"
         android:layout_margin="11dp"/>
 
     <FrameLayout
@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/group_8" />
+            android:src="@drawable/character_background" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
             android:id="@+id/inputTextSendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_up_circle"
+            android:src="@drawable/send_button"
             app:layout_constraintStart_toEndOf="@id/inputEditTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

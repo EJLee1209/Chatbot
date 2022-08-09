@@ -25,7 +25,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@drawable/under_background_2"
+            android:src="@drawable/splash_background_1_2"
             android:scaleType="fitXY"
             android:layout_gravity="bottom" />
 
@@ -51,12 +51,12 @@
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@drawable/group_11"
+                    android:src="@drawable/menu_button_background"
                     android:layout_gravity="center"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/check_square"
+                    android:src="@drawable/menu_icon_todo"
                     android:layout_gravity="center"/>
             </FrameLayout>
 
@@ -75,12 +75,12 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/group_11"
+                    android:src="@drawable/menu_button_background"
                     android:layout_gravity="center"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/home"
+                    android:src="@drawable/menu_icon_home"
                     android:layout_gravity="center"/>
             </FrameLayout>
             <FrameLayout
@@ -100,12 +100,12 @@
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@drawable/group_11"
+                    android:src="@drawable/menu_button_background"
                     android:layout_gravity="center"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/edit_3"
+                    android:src="@drawable/menu_icon_calendar"
                     android:layout_gravity="center"/>
             </FrameLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
