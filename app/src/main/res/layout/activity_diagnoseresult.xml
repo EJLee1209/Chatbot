@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".diagnoseresult">
+
+    <Button
+        android:id="@+id/backbtn3"
+        android:layout_width="55dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="28dp"
+        android:background="#00000000"
+        android:drawableTop="@drawable/v1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전문가의 상담을 한번\n받아보는게 어떨까요?\n우울증 자가진단에서 높은 점수를 받았어요."
+        android:layout_marginTop="250dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지금까지 힘든시간을 보내고 있었다면,\n 당신은 혼자가 아니랍니다.\n당신의 파트너인 심리상담센터가 도움을 줄 수 있습니다."
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
+
+    <ImageView
+        android:id="@+id/helpbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/helpbtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="뒤로가기"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>
+
+</layout>

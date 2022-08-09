@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".diagnosis">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left"
+        android:layout_gravity="left"
+        android:text="안승찬님 \n 혹시 무슨일 있나요? \n 최근 2주간 우울한 감정이 지속되었습니다"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="left"
+        android:layout_gravity="left"
+        android:text="한번 자가진단을 해보는 건 어떨까요?"
+        android:layout_marginBottom="40dp"/>
+
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="141dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="#fffffffff"
+        android:drawableTop="@drawable/btn3" />
+
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="140dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#fffffffff"
+        android:drawableTop="@drawable/btn4" />
+
+
+
+</LinearLayout>
