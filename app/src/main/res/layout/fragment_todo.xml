@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/todoTitle"
         app:layout_constraintBottom_toBottomOf="@id/todoTitle"
-        android:src="@drawable/arrow_left"
+        android:src="@drawable/left_arrow"
         android:layout_marginStart="18dp"
         android:visibility="gone" />
 
@@ -49,7 +49,7 @@
         android:id="@+id/todoArrowRightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow_right"
+        android:src="@drawable/right_arrow"
         app:layout_constraintTop_toTopOf="@id/todoSecondTitle"
         app:layout_constraintBottom_toBottomOf="@id/todoSecondTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
         android:id="@+id/RecommendArrowRightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow_right"
+        android:src="@drawable/right_arrow"
         app:layout_constraintTop_toTopOf="@id/todoRecommendTitle"
         app:layout_constraintBottom_toBottomOf="@id/todoRecommendTitle"
         app:layout_constraintEnd_toEndOf="parent"

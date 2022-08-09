@@ -7,22 +7,22 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/under_background_5"
+        android:src="@drawable/splash_background_5"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/up_background_3_2"
+        android:src="@drawable/splash_background_3_2"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/up_background_2_2"
+        android:src="@drawable/splash_background_2_2"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/up_background_3"
+        android:src="@drawable/splash_background_1_3"
         android:scaleType="fitXY"/>
 
 
@@ -46,25 +46,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:src="@drawable/under_background_4"
+        android:src="@drawable/splash_background_4"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:src="@drawable/under_background_3_1"
+        android:src="@drawable/splash_background_3_1"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:src="@drawable/under_background_2_2"
+        android:src="@drawable/splash_background_2_1"
         android:scaleType="fitXY"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:src="@drawable/under_background_2"
+        android:src="@drawable/splash_background_1_2"
         android:scaleType="fitXY"/>
 
 </FrameLayout>
