@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="660dp"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".emotionCalendar.CalendarFragment">
 
@@ -161,10 +161,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="13dp"/>
+            <TextView
+                android:id="@+id/testButton"
+                android:layout_width="112dp"
+                android:layout_height="40dp"
+                android:text="자가진단"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/rectangle_1"
+                app:layout_constraintTop_toBottomOf="@id/confirmButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="13dp"/>
             <View
                 android:layout_width="0dp"
-                android:layout_height="13dp"
-                app:layout_constraintTop_toBottomOf="@id/confirmButton"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/testButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
