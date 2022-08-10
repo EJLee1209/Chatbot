@@ -11,20 +11,17 @@ import com.dldmswo1209.chatbot.databinding.FragmentCalendarBinding
 
 class CalendarFragment : Fragment(R.layout.fragment_calendar) {
     private lateinit var binding: FragmentCalendarBinding
-    private lateinit var addEmotionFragment: AddEmotionFragment
-    private lateinit var analysisEmotionFragment: AnalysisEmotionFragment
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalendarBinding.bind(view)
 
-        addEmotionFragment = AddEmotionFragment()
-        analysisEmotionFragment = AnalysisEmotionFragment()
-
         binding.addEmotionButton.setOnClickListener {
-            (activity as MainActivity).replaceFragment(addEmotionFragment)
+            (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
         }
         binding.emotionCalendar.setOnClickListener {
-            (activity as MainActivity).replaceFragment(analysisEmotionFragment)
+            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
         }
+
     }
 }

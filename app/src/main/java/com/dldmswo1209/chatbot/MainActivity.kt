@@ -9,20 +9,40 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
+import com.dldmswo1209.chatbot.depressionTest.DepressionTestFragment
+import com.dldmswo1209.chatbot.depressionTest.HelpFragment
+import com.dldmswo1209.chatbot.depressionTest.RecommendTestFragment
+import com.dldmswo1209.chatbot.emotionCalendar.AddEmotionFragment
+import com.dldmswo1209.chatbot.emotionCalendar.AnalysisEmotionFragment
 import com.dldmswo1209.chatbot.emotionCalendar.CalendarFragment
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val todoFragment = TodoFragment()
     private val homeFragment = HomeFragment()
-    private val calendarFragment = CalendarFragment()
+    lateinit var calendarFragment : CalendarFragment
+    lateinit var depressionTestFragment: DepressionTestFragment
+    lateinit var helpFragment: HelpFragment
+    lateinit var recommendTestFragment: RecommendTestFragment
+    lateinit var addEmotionFragment: AddEmotionFragment
+    lateinit var analysisEmotionFragment: AnalysisEmotionFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        depressionTestFragment = DepressionTestFragment()
+        helpFragment = HelpFragment()
+        recommendTestFragment = RecommendTestFragment()
+        addEmotionFragment = AddEmotionFragment()
+        analysisEmotionFragment = AnalysisEmotionFragment()
+        calendarFragment = CalendarFragment()
+
         replaceFragment(homeFragment)
 
         buttonClickEvent()

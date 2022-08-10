@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".depressionTest.RecommendTestFragment"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용자명\n혹시 무슨 일 있었나요?"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="17dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최근 2주간 우울한 감정이 지속되었어요."
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="17dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="한번 자가진단을 해보는 건 어떨까요?"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="23dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/getTestButton"
+        android:layout_width="139dp"
+        android:layout_height="48dp"
+        android:text="자가진단 하기"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@drawable/rectangle_4"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="47dp"
+        android:layout_marginBottom="11dp"/>
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="139dp"
+        android:layout_height="48dp"
+        android:text="뒤로가기"
+        android:gravity="center"
+        android:background="@drawable/rectangle_1"
+        android:layout_gravity="center_horizontal"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
