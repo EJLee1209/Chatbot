@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="660dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".emotionCalendar.CalendarFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/analysisEmotionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="감정 분석"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="32dp"/>
+            <TextView
+                android:id="@+id/analysisEmotionSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9월동안 이런 감정을 느꼈어요!"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/analysisEmotionTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="21dp"
+                android:layout_marginStart="19dp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/EmotionPieChart"
+                android:layout_width="258dp"
+                android:layout_height="258dp"
+                app:layout_constraintTop_toBottomOf="@id/analysisEmotionSubTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="34dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/emotionRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="545dp"
+                app:layout_constraintTop_toBottomOf="@id/EmotionPieChart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="34dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="17dp"
+                android:background="@color/purple_200"/>
+            <TextView
+                android:id="@+id/bestDayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9월 14일이 제일 즐거운 날이었어요!"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/emotionRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="23dp"/>
+
+            <ImageView
+                android:id="@+id/bestDayRightArrowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/bestDayTitle"
+                app:layout_constraintTop_toTopOf="@id/bestDayTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="22dp"/>
+            <FrameLayout
+                android:id="@+id/bestDayFrameLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bestDayTitle"
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/memo_border">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/bestDayEmotionChart"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginBottom="23dp" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="46dp"
+                        android:layout_marginTop="28dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="행복 %"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="기쁨 %"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="슬픔 %"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="우울 %"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분노 %"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </FrameLayout>
+            <TextView
+                android:id="@+id/confirmButton"
+                android:layout_width="112dp"
+                android:layout_height="40dp"
+                android:text="확인했어요"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/rectangle_1"
+                app:layout_constraintTop_toBottomOf="@id/bestDayFrameLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="13dp"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="13dp"
+                app:layout_constraintTop_toBottomOf="@id/confirmButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
