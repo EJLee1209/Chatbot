@@ -10,27 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatbot">
         <activity
-            android:name=".todayemotion_add"
+            android:name=".selfDiagnosis.RecommendHelpActivity"
             android:exported="false" />
         <activity
-            android:name=".emtional"
+            android:name=".selfDiagnosis.SelfDiagnosisActivity"
             android:exported="false" />
         <activity
-            android:name=".emotioncal"
+            android:name=".selfDiagnosis.RecommendSelfDiagnosisActivity"
             android:exported="false" />
         <activity
-            android:name=".diagnosis"
+            android:name=".emotionCalendar.AnalysisEmotionActivity"
             android:exported="false" />
         <activity
-            android:name=".diagnosis2"
-            android:exported="false" />
-        <activity
-            android:name=".diagnoseresult"
+            android:name=".emotionCalendar.AddEmotionActivity"
             android:exported="false" />
         <activity
             android:name=".chatRoom.ChatRoomActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />

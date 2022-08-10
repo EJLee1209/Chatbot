@@ -23,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <ImageView
+            android:id="@+id/menuBackground"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/splash_background_1_2"

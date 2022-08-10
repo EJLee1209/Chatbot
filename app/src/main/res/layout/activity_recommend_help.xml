@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/background_gradient"
+    tools:context=".selfDiagnosis.RecommendSelfDiagnosisActivity">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전문가의 상담을 한번\n받아보는게 어떨까요?"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="17dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="우울증 자가진단에서 높은 점수를 받았어요."
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="17dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지금까지 힘든 시간을 보내고 있었다면,\n당신은 혼자가 아니랍니다.\n당신의 파트너인 심리상담센터가 도움을 줄 수 있어요."
+        android:textColor="@color/black"
+        android:layout_marginTop="23dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/requestHelpButton"
+        android:layout_width="196dp"
+        android:layout_height="48dp"
+        android:text="도움을 요청하겠습니다"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rectangle_3"
+        android:layout_marginTop="47dp"/>
+
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:text="뒤로가기"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="11dp"
+        android:gravity="center"/>
+    <View
+        android:layout_width="58dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

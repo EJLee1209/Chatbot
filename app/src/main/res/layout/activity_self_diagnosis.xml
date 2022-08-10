@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".selfDiagnosis.SelfDiagnosisActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/leftArrowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/left_arrow"
+        android:layout_gravity="start"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="19dp"/>
+
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_diagnosis">
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_diagnosis">
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_diagnosis">
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_diagnosis">
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:background="@drawable/border_diagnosis">
+
+        <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="다음화면으로 가기"
+            android:gravity="center" />
+    </FrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
