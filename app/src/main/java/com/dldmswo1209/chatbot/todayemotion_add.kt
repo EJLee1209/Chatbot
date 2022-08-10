@@ -13,7 +13,6 @@ class todayemotion_add : AppCompatActivity() {
         teabtn.setOnClickListener {
             val intent = Intent(this,diagnosis2::class.java)
             startActivity(intent)
-
         }
     }
 }
