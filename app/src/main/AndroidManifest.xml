@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatbot">
-        <activity
-            android:name=".AddEmotionActivity"
-            android:exported="false" />
+
         <activity
             android:name=".chatRoom.ChatRoomActivity"
             android:exported="false" />

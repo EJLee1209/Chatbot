@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             binding.selectRectangleCalendar.isVisible = true
         }
     }
-    private fun replaceFragment(fragment: Fragment){
+   fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .apply {
                 replace(R.id.fragmentContainerView, fragment)
