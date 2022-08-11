@@ -1,11 +1,13 @@
 package com.dldmswo1209.chatbot.chatRoom
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dldmswo1209.chatbot.MainActivity
@@ -14,7 +16,9 @@ import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -25,6 +29,13 @@ import java.util.*
  * 채팅 DB 구조
  * FireBase Realtime Database
  * Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
+ *
+ * 구조를 위와 같이 했을 때의 문제점 : 어플을 사용하는 사람이 2명 이상일 경우 구분이 안됨. 모든 유저의 채팅 목록이 같은 DB 에 저장이 됨
+ * 사용자 이름으로 구분하면 해결 되긴 함... 더 좋은 방법은 로그인 기능을 추가해서 user uid(고유한 값) 로 구분하는것
+ * 유저 이름으로 구분할 경우, 유저 이름을 입력받는 부분에서 중복체크를 하는 작업을 추가해야 함.
+ *
+ * ---- DB 구조 수정 ----
+ * 이름 -> Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
  * 날짜별로 채팅 아이템을 저장해서 채팅방을 들어갔을 때 오늘 챗봇과 나눈 대화 목록만 사용자에게 보여줌
  */
 
@@ -34,9 +45,11 @@ class ChatRoomActivity : AppCompatActivity() {
         ChatItem("오늘은 무슨 일이 있었니?", TYPE_BOT)
     )
     private lateinit var chatAdapter : ChatListAdapter
+    private lateinit var userDB: SharedPreferences
+    private lateinit var userName: String
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-            val chatItem = snapshot.getValue(ChatItem::class.java) // DB에서 객체 형태로 가져옴
+            val chatItem = snapshot.getValue(ChatItem::class.java) // DB 에서 객체 형태로 가져옴
             chatItem ?: return // null 처리
 
             chatList.add(chatItem)
@@ -58,42 +71,58 @@ class ChatRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        buttonClickEvent()
 
+        // 채팅정보 초기화 작업
+        chatList.clear()
+        chatList.add(ChatItem("오늘은 무슨 일이 있었니?", TYPE_BOT))
+
+        // 현재 사용자의 이름을 가져오는 작업
+        userDB = getSharedPreferences("user", Context.MODE_PRIVATE)
+        userName = userDB?.getString("name",null).toString()
+
+        // 어답터 생성
         chatAdapter = ChatListAdapter { yesOrNo ->
             if (yesOrNo) {
                 // true : 좋아! 를 누른 경우
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("yes", true)
-                startActivity(intent)
+                val sharedPreferences = getSharedPreferences("question", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.apply {
+                    putBoolean("yesOrNo", true)
+                    apply()
+                }
                 finish()
             } else {
                 // false : 아니 를 누른 경우
                 Toast.makeText(this, "ㅠㅠ",Toast.LENGTH_SHORT).show()
             }
         }
-
-        chatList.clear()
-        chatList.add(ChatItem("오늘은 무슨 일이 있었니?", TYPE_BOT))
-
-        val intent = intent
-        if(intent != null){
-            // 홈 화면에서 채팅을 입력해서 채팅방으로 들어온 경우
-            val chat = intent.getStringExtra("chat")
-            val newChat = chat?.let { ChatItem(it, TYPE_USER) }
-            if (newChat != null) {
-                chatItemPushToDB(newChat)
-            }
-        }
+        // 리사이클러뷰
         binding.chatRecyclerView.apply {
             chatAdapter.submitList(chatList)
             adapter = chatAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
-        val chatDB = Firebase.database.reference.child(DB_PATH_CHAT).child(LocalDate.now().toString())
+        // DB 에서 데이터를 가져오는 작업
+        val chatDB = Firebase.database.reference.child(userName).child(DB_PATH_CHAT).child(LocalDate.now().toString())
         chatDB.addChildEventListener(listener)
 
-        buttonClickEvent()
+        // 문제점 : DB 에서 채팅 데이터를 가져오는데 시간이 걸려서 홈 화면에서 채팅을 보낼 경우 이미 존재하던 채팅 내역보다 위에 나오게 된다.
+        // 딜레이를 발생시켜서 해결...? 최선인가
+        Handler(Looper.getMainLooper()).postDelayed({
+            //실행할 코드
+            val intent = intent
+            if(intent != null){
+                // 홈 화면에서 채팅을 입력해서 채팅방으로 들어온 경우
+                val chat = intent.getStringExtra("chat")
+                val newChat = chat?.let { ChatItem(it, TYPE_USER) }
+                if (newChat != null) {
+                    chatItemPushToDB(newChat)
+                }
+            }
+        }, 1500)
+
     }
     private fun buttonClickEvent(){
         binding.chatRoomLeftArrowButton.setOnClickListener {
@@ -103,7 +132,6 @@ class ChatRoomActivity : AppCompatActivity() {
             val newText = binding.inputEditTextView.text.toString()
             if(newText == "") return@setOnClickListener
             val newChat = ChatItem(newText, TYPE_USER)
-
             chatItemPushToDB(newChat)
             binding.inputEditTextView.text.clear()
             // todo AI 모델 적용 후 메시지를 인식해서 챗봇 메시지를 추가하는 기능
@@ -116,12 +144,11 @@ class ChatRoomActivity : AppCompatActivity() {
         // 날짜 + 시간에서 시간만 가져옴
         var currentTime = currentDate.split("T")[1]
         // DB 구조
-        // Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
-        val chatDB = Firebase.database.reference.child(DB_PATH_CHAT).child(LocalDate.now().toString())
+        // 이름 -> Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
+        val chatDB = Firebase.database.reference.child(userName).child(DB_PATH_CHAT).child(LocalDate.now().toString())
         chatDB
             .child(currentTime)
             .setValue(chat)
-        chatAdapter.notifyDataSetChanged()
 
         // 임의의 봇 채팅 리스트
         // 사용자가 채팅을 보내면 랜덤으로 채팅이 생성됨
@@ -149,11 +176,11 @@ class ChatRoomActivity : AppCompatActivity() {
                 .child(currentTime)
                 .setValue(botChat)
 
-            chatAdapter.notifyDataSetChanged()
         }, 1000)
 
 
     }
+
     companion object{
         const val DB_PATH_CHAT = "Chat"
     }

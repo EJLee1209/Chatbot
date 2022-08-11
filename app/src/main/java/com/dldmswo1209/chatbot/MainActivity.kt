@@ -1,5 +1,6 @@
 package com.dldmswo1209.chatbot
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,11 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonClickEvent()
 
-        val intent = intent
-        val yes = intent.getBooleanExtra("yes",false)
-        if(yes){
-            binding.calendarButton.performClick() // 캘린더 프래그먼트로 이동 하기 위해서 강제 클릭 이벤트 발생 시키기
-        }
+
 
     }
     private fun buttonClickEvent(){
@@ -79,6 +76,21 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragmentContainerView, fragment)
                 commit()
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences = getSharedPreferences("question", Context.MODE_PRIVATE)
+        val yesOrNo = sharedPreferences.getBoolean("yesOrNo", false)
+
+        if(yesOrNo){
+            binding.calendarButton.performClick()
+            val editor = sharedPreferences.edit()
+            editor.apply {
+                putBoolean("yesOrNo", false)
+                apply()
+            }
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -15,6 +16,11 @@ import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.chatRoom.ChatRoomActivity
 import com.dldmswo1209.chatbot.databinding.FragmentHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding : FragmentHomeBinding
@@ -40,13 +46,25 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                         if (editText.text.isEmpty()){
                             Toast.makeText(requireContext(), "이름을 입력해주세요", Toast.LENGTH_SHORT).show()
-                            return
+                            checkUser()
                         }
-                        val editor = sharedPreferences.edit()
-                        editor.apply{
-                            putString("name", editText.text.toString())
-                            apply()
-                        }
+                        val newName = editText.text.toString()
+                        val testDB = Firebase.database.reference.child(newName)
+                        testDB.addListenerForSingleValueEvent(object: ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.exists()){
+                                    Toast.makeText(requireContext(), "이미 존재하는 이름입니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+                                    checkUser()
+                                }else{
+                                    val editor = sharedPreferences.edit()
+                                    editor.apply{
+                                        putString("name", newName)
+                                        apply()
+                                    }
+                                }
+                            }
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
                     }
                 })
             builder.show()
