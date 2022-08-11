@@ -53,6 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
     private fun buttonClickEvent(){
+        // 버튼 클릭 이벤트 작업
         binding.chatImageButton.setOnClickListener {
             startActivity(Intent(requireContext(), ChatRoomActivity::class.java))
         }
@@ -61,6 +62,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 Toast.makeText(requireContext(), "메시지를 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            // 채팅 메세지 액티비티로 전달
             val intent = Intent(requireContext(), ChatRoomActivity::class.java)
             intent.putExtra("chat", binding.inputEditTextView.text.toString())
             startActivity(intent)
