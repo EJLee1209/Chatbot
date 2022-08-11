@@ -9,28 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatbot">
-        <activity
-            android:name=".todayemotion_add"
-            android:exported="false" />
-        <activity
-            android:name=".emtional"
-            android:exported="false" />
-        <activity
-            android:name=".emotioncal"
-            android:exported="false" />
-        <activity
-            android:name=".diagnosis"
-            android:exported="false" />
-        <activity
-            android:name=".diagnosis2"
-            android:exported="false" />
-        <activity
-            android:name=".diagnoseresult"
-            android:exported="false" />
+
         <activity
             android:name=".chatRoom.ChatRoomActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
