@@ -1,10 +1,14 @@
 package com.dldmswo1209.chatbot.chatRoom
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
 import com.google.firebase.database.ChildEventListener
@@ -14,8 +18,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 
 /***
+ * %%%%%%% 필독 %%%%%%%%
  * 채팅 DB 구조
  * FireBase Realtime Database
  * Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
@@ -27,11 +33,11 @@ class ChatRoomActivity : AppCompatActivity() {
     private val chatList = mutableListOf<ChatItem>(
         ChatItem("오늘은 무슨 일이 있었니?", TYPE_BOT)
     )
-    private val chatAdapter = ChatListAdapter()
+    private lateinit var chatAdapter : ChatListAdapter
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-            val chatItem = snapshot.getValue(ChatItem::class.java)
-            chatItem ?: return
+            val chatItem = snapshot.getValue(ChatItem::class.java) // DB에서 객체 형태로 가져옴
+            chatItem ?: return // null 처리
 
             chatList.add(chatItem)
             chatAdapter.submitList(chatList)
@@ -53,6 +59,19 @@ class ChatRoomActivity : AppCompatActivity() {
         binding = ActivityChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        chatAdapter = ChatListAdapter { yesOrNo ->
+            if (yesOrNo) {
+                // true : 좋아! 를 누른 경우
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("yes", true)
+                startActivity(intent)
+                finish()
+            } else {
+                // false : 아니 를 누른 경우
+                Toast.makeText(this, "ㅠㅠ",Toast.LENGTH_SHORT).show()
+            }
+        }
+
         chatList.clear()
         chatList.add(ChatItem("오늘은 무슨 일이 있었니?", TYPE_BOT))
 
@@ -71,7 +90,7 @@ class ChatRoomActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        val chatDB = Firebase.database.reference.child("Chat").child(LocalDate.now().toString())
+        val chatDB = Firebase.database.reference.child(DB_PATH_CHAT).child(LocalDate.now().toString())
         chatDB.addChildEventListener(listener)
 
         buttonClickEvent()
@@ -91,21 +110,38 @@ class ChatRoomActivity : AppCompatActivity() {
         }
     }
     private fun chatItemPushToDB(chat: ChatItem){ // ChatItem 을 firebase RealtimeDB 에 저장하는 메소드
-        // DB 경로 이름에 특수기호 . # $ [ ] 는 포함 되면 안되서 .을 제거하기 위함
         var localDateTime = LocalDateTime.now().toString()
+        // DB 경로 이름에 특수기호 . # $ [ ] 는 포함 되면 안되서 .을 제거하기 위함
         var currentDate = localDateTime.split(".")[0]
+        // 날짜 + 시간에서 시간만 가져옴
         var currentTime = currentDate.split("T")[1]
         // DB 구조
-        // Chat -> 현재날짜+시간(2022-08-11T00:14:55) -> ChatItem() 객체로 저장
-        val chatDB = Firebase.database.reference.child("Chat").child(LocalDate.now().toString())
+        // Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
+        val chatDB = Firebase.database.reference.child(DB_PATH_CHAT).child(LocalDate.now().toString())
         chatDB
             .child(currentTime)
             .setValue(chat)
         chatAdapter.notifyDataSetChanged()
+
+        // 임의의 봇 채팅 리스트
+        // 사용자가 채팅을 보내면 랜덤으로 채팅이 생성됨
+        val botChatList = mutableListOf<ChatItem>(
+            ChatItem("정말? 즐거운 하루였겠다!", TYPE_BOT),
+            ChatItem("그랬구나, 괜찮아 그럴 수 있지", TYPE_BOT),
+            ChatItem("힘내!!", TYPE_BOT),
+            ChatItem("난 항상 너편이야", TYPE_BOT),
+            ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND),
+            ChatItem("오늘 할 일을 추가해보자!", TYPE_BOT_RECOMMEND),
+            ChatItem("오늘의 기분을 추가해볼까?", TYPE_BOT_RECOMMEND),
+            ChatItem("너가 진심으로 행복했으면 좋겠다", TYPE_BOT),
+            ChatItem("ㅋㅋㅋㅋ", TYPE_BOT),
+        )
+        val idx = Random().nextInt(botChatList.size)
         // 임의로 딜레이를 줘서 AI와 대화하는 것 처럼 보이기 위함
+        // 나중에 이부분을 AI 모델을 활용해서 바꾸면 될듯
         Handler(Looper.getMainLooper()).postDelayed({
             //실행할 코드
-            val botChat = ChatItem("ㅋㅋㅋㅋ", TYPE_BOT)// 테스트 채팅(AI)
+            val botChat = botChatList[idx]
             localDateTime = LocalDateTime.now().toString()
             currentDate = localDateTime.split(".")[0]
             currentTime = currentDate.split("T")[1]
@@ -117,5 +153,8 @@ class ChatRoomActivity : AppCompatActivity() {
         }, 1000)
 
 
+    }
+    companion object{
+        const val DB_PATH_CHAT = "Chat"
     }
 }
