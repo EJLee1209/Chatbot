@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val todoFragment = TodoFragment()
     private val homeFragment = HomeFragment()
-    lateinit var calendarFragment : CalendarFragment
+    val calendarFragment = CalendarFragment()
     lateinit var depressionTestFragment: DepressionTestFragment
     lateinit var helpFragment: HelpFragment
     lateinit var recommendTestFragment: RecommendTestFragment
@@ -41,11 +41,17 @@ class MainActivity : AppCompatActivity() {
         recommendTestFragment = RecommendTestFragment()
         addEmotionFragment = AddEmotionFragment()
         analysisEmotionFragment = AnalysisEmotionFragment()
-        calendarFragment = CalendarFragment()
 
         replaceFragment(homeFragment)
 
         buttonClickEvent()
+
+        val intent = intent
+        val yes = intent.getBooleanExtra("yes",false)
+        if(yes){
+            binding.calendarButton.performClick() // 캘린더 프래그먼트로 이동 하기 위해서 강제 클릭 이벤트 발생 시키기
+        }
+
     }
     private fun buttonClickEvent(){
         binding.HomeButton.setOnClickListener {

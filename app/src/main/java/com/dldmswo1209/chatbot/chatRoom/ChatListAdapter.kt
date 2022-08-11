@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.chatbot.R
 
-class ChatListAdapter : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil) {
+class ChatListAdapter(val onItemClicked: (Boolean) -> Unit) : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil) {
     override fun getItemViewType(position: Int): Int {
         return currentList[position].type
     }
@@ -23,6 +23,21 @@ class ChatListAdapter : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil)
             chatTextView.text = chatItem.chatText
         }
     }
+    inner class BotRecommendViewHolder(view: View): RecyclerView.ViewHolder(view){
+        private val chatTextView = view.findViewById<TextView>(R.id.botRecommendChatTextView)
+        private val noButton = view.findViewById<TextView>(R.id.noButton)
+        private val yesButton = view.findViewById<TextView>(R.id.yesButton)
+        fun bind(chatItem: ChatItem){
+            chatTextView.text = chatItem.chatText
+            noButton.setOnClickListener {
+                onItemClicked(false)
+            }
+            yesButton.setOnClickListener {
+                onItemClicked(true)
+            }
+        }
+    }
+
     inner class UserViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val chatTextView = view.findViewById<TextView>(R.id.userChatTextView)
         fun bind(chatItem: ChatItem){
@@ -37,10 +52,15 @@ class ChatListAdapter : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil)
                 view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item_bot,parent,false)
                 BotViewHolder(view)
             }
+            TYPE_BOT_RECOMMEND ->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item_bot_recommend,parent,false)
+                BotRecommendViewHolder(view)
+            }
             else -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item_user,parent,false)
                 UserViewHolder(view)
             }
+
         }
     }
 
@@ -48,6 +68,10 @@ class ChatListAdapter : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil)
         when(currentList[position].type){
             TYPE_BOT->{
                 (holder as BotViewHolder).bind(currentList[position])
+                holder.setIsRecyclable(false)
+            }
+            TYPE_BOT_RECOMMEND ->{
+                (holder as BotRecommendViewHolder).bind(currentList[position])
                 holder.setIsRecyclable(false)
             }
             else->{
