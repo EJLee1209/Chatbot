@@ -8,9 +8,18 @@
     android:gravity="center_vertical">
 
     <TextView
+        android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사용자명\n혹시 무슨 일 있었나요?"
+        android:text="사용자명"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="17dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="혹시 무슨 일 있었나요?"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:textStyle="bold"
