@@ -15,14 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="23dp"
         android:layout_marginTop="29dp"/>
-    <TextView
+    <ImageView
         android:id="@+id/mainTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textSize="40sp"
-        android:textColor="@color/title_color"
         android:layout_marginTop="10dp"
+        android:src="@drawable/title_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -35,6 +33,7 @@
         android:textSize="14sp"
         android:textColor="@color/text_color"
         android:textStyle="bold"
+        android:fontFamily="@font/nanumbarungothic"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:paddingTop="9dp"

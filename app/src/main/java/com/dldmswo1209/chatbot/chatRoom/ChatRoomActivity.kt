@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -47,6 +44,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var chatAdapter : ChatListAdapter
     private lateinit var userDB: SharedPreferences
     private lateinit var userName: String
+    private lateinit var chatDB: DatabaseReference
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val chatItem = snapshot.getValue(ChatItem::class.java) // DB 에서 객체 형태로 가져옴
@@ -105,7 +103,7 @@ class ChatRoomActivity : AppCompatActivity() {
         }
 
         // DB 에서 데이터를 가져오는 작업
-        val chatDB = Firebase.database.reference.child(userName).child(DB_PATH_CHAT).child(LocalDate.now().toString())
+        chatDB = Firebase.database.reference.child(userName).child(DB_PATH_CHAT).child(LocalDate.now().toString())
         chatDB.addChildEventListener(listener)
 
         // 문제점 : DB 에서 채팅 데이터를 가져오는데 시간이 걸려서 홈 화면에서 채팅을 보낼 경우 이미 존재하던 채팅 내역보다 위에 나오게 된다.
@@ -137,18 +135,19 @@ class ChatRoomActivity : AppCompatActivity() {
             // todo AI 모델 적용 후 메시지를 인식해서 챗봇 메시지를 추가하는 기능
         }
     }
-    private fun chatItemPushToDB(chat: ChatItem){ // ChatItem 을 firebase RealtimeDB 에 저장하는 메소드
+    private fun getCurrentTime(): String{
         var localDateTime = LocalDateTime.now().toString()
         // DB 경로 이름에 특수기호 . # $ [ ] 는 포함 되면 안되서 .을 제거하기 위함
         var currentDate = localDateTime.split(".")[0]
         // 날짜 + 시간에서 시간만 가져옴
         var currentTime = currentDate.split("T")[1]
+
+        return currentTime
+    }
+    private fun chatItemPushToDB(chat: ChatItem){ // ChatItem 을 firebase RealtimeDB 에 저장하는 메소드
         // DB 구조
         // 이름 -> Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
-        val chatDB = Firebase.database.reference.child(userName).child(DB_PATH_CHAT).child(LocalDate.now().toString())
-        chatDB
-            .child(currentTime)
-            .setValue(chat)
+        chatDB.child(getCurrentTime()).setValue(chat)
 
         // 임의의 봇 채팅 리스트
         // 사용자가 채팅을 보내면 랜덤으로 채팅이 생성됨
@@ -169,16 +168,11 @@ class ChatRoomActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             //실행할 코드
             val botChat = botChatList[idx]
-            localDateTime = LocalDateTime.now().toString()
-            currentDate = localDateTime.split(".")[0]
-            currentTime = currentDate.split("T")[1]
             chatDB
-                .child(currentTime)
+                .child(getCurrentTime())
                 .setValue(botChat)
 
         }, 1000)
-
-
     }
 
     companion object{
