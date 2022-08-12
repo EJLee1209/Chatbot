@@ -26,19 +26,15 @@
         android:scaleType="fitXY"/>
 
 
-    <TextView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textSize="40sp"
-        android:textColor="@color/black"
+        android:src="@drawable/title"
         android:layout_gravity="center"/>
-    <TextView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/little_title"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:src="@drawable/little_title"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"/>
 

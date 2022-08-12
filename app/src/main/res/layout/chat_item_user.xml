@@ -13,6 +13,7 @@
         android:gravity="center"
         android:textSize="14sp"
         android:textColor="#363636"
+        android:fontFamily="@font/nanumbarungothic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/chat_bubble_user"/>
