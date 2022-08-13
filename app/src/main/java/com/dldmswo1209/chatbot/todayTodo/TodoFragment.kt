@@ -8,12 +8,21 @@ import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.TodoListAdapter
 import com.dldmswo1209.chatbot.databinding.FragmentTodoBinding
+import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_DID_WORK
+import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_MUST_TODO
 import java.util.*
 
 
 class TodoFragment : Fragment(R.layout.fragment_todo) {
     private lateinit var binding : FragmentTodoBinding
-    private val todoAdapter = TodoListAdapter()
+    private val todoAdapter = TodoListAdapter { todoItem, isChecked ->
+        if(isChecked){
+            todoItem.state = STATE_DID_WORK
+        }else{
+            todoItem.state = STATE_MUST_TODO
+        }
+
+    }
     private val randomRecommendWorks = mutableListOf<TodoItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

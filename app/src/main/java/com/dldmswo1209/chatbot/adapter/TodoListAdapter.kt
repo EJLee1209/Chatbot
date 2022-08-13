@@ -6,13 +6,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.chatbot.databinding.WorkItemBinding
 import com.dldmswo1209.chatbot.todayTodo.TodoItem
+import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_DID_WORK
 
-class TodoListAdapter: androidx.recyclerview.widget.ListAdapter<TodoItem, TodoListAdapter.ViewHolder>(diffUtil)  {
-
+class TodoListAdapter(val itemClicked: (TodoItem, isChecked: Boolean)->(Unit)): androidx.recyclerview.widget.ListAdapter<TodoItem, TodoListAdapter.ViewHolder>(diffUtil)  {
     inner class ViewHolder(private val binding: WorkItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(todoItem: TodoItem){
             binding.todoTitle.text = todoItem.title
             binding.todoSecondTitle.text = todoItem.secondTitle
+            if(todoItem.state == STATE_DID_WORK){
+                binding.todoCheckbox.isChecked = true
+            }
+            binding.todoCheckbox.setOnClickListener{
+                itemClicked(todoItem, binding.todoCheckbox.isChecked)
+            }
+
         }
     }
 

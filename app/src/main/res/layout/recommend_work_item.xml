@@ -27,7 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:track="@drawable/switch_track"
         android:thumb="@drawable/switch_thumb"
-        android:layout_marginEnd="22dp" />
+        android:layout_marginEnd="22dp"
+        android:switchMinWidth="40dp"/>
 
     <View
         android:layout_width="0dp"
