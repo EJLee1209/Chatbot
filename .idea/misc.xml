@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bottom_round_rectangle.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/chat_bubble_bot.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/input_text_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/memo_border.xml" value="0.168" />
