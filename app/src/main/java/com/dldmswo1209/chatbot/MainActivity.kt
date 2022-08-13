@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         buttonClickEvent()
 
 
-
     }
     private fun buttonClickEvent(){
         binding.HomeButton.setOnClickListener {

@@ -14,9 +14,10 @@ class TodoListAdapter(val itemClicked: (TodoItem, isChecked: Boolean)->(Unit)): 
             binding.todoTitle.text = todoItem.title
             binding.todoSecondTitle.text = todoItem.secondTitle
             if(todoItem.state == STATE_DID_WORK){
-                binding.todoCheckbox.isChecked = true
+                // 이미 한 일인 경우
+                binding.todoCheckbox.isChecked = true // 체크박스 체크
             }
-            binding.todoCheckbox.setOnClickListener{
+            binding.todoCheckbox.setOnClickListener{ // 체크박스 클릭 이벤트
                 itemClicked(todoItem, binding.todoCheckbox.isChecked)
             }
 

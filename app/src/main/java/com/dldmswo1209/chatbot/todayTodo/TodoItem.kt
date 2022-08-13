@@ -5,6 +5,7 @@ data class TodoItem(
     var secondTitle: String,
     var state: Int
 ){
+    constructor():this("","",0){}
 
     companion object{
         // 상태 : 해야 할 일, 이미 한 일, 추천목록에 있는 할 일

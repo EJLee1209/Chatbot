@@ -47,8 +47,8 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var chatDB: DatabaseReference
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-            val chatItem = snapshot.getValue(ChatItem::class.java) // DB 에서 객체 형태로 가져옴
-            chatItem ?: return // null 처리
+            val chatItem = snapshot.getValue(ChatItem::class.java) ?: return // DB 에서 객체 형태로 가져옴
+
 
             chatList.add(chatItem)
             chatAdapter.submitList(chatList)

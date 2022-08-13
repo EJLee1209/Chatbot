@@ -16,9 +16,10 @@ class AddWorkListAdapter(val itemClicked: (TodoItem, isActivated: Boolean) -> (U
         fun bind(todoItem: TodoItem){
             binding.todoTitle.text = todoItem.title
             if(todoItem.state == STATE_MUST_TODO || todoItem.state == STATE_DID_WORK){
-                binding.addSwitch.isChecked = true
+                // 이미 할 일 목록에 있거나, 이미 한 일인 경우
+                binding.addSwitch.isChecked = true // 스위치 on
             }
-            binding.addSwitch.setOnClickListener {
+            binding.addSwitch.setOnClickListener { // 스위치 클릭 이벤트 처리
                 itemClicked(todoItem, binding.addSwitch.isChecked)
             }
         }
@@ -35,7 +36,7 @@ class AddWorkListAdapter(val itemClicked: (TodoItem, isActivated: Boolean) -> (U
     companion object{
         val diffUtil = object: DiffUtil.ItemCallback<TodoItem>(){
             override fun areItemsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
-                return oldItem == newItem
+                return oldItem.title == newItem.title
             }
 
             override fun areContentsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
