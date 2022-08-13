@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.1415" />
+        <entry key="app/src/main/res/drawable/switch_thumb_circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/switch_thumb_on.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/switch_track.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.1415" />

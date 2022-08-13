@@ -10,14 +10,18 @@ import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.AddWorkListAdapter
 import com.dldmswo1209.chatbot.databinding.FragmentAddTodoBinding
+import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_MUST_TODO
+import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_RECOMMEND_WORK
 
 class AddTodoFragment : Fragment(R.layout.fragment_add_todo) {
     private val addWorkListadapter = AddWorkListAdapter { todoItem, isChecked ->
         if (isChecked) {
             (activity as MainActivity).todoFragment.addWork(todoItem)
+            todoItem.state = STATE_MUST_TODO
             Toast.makeText(requireContext(), "할 일을 추가 했습니다.", Toast.LENGTH_SHORT).show()
         } else {
             (activity as MainActivity).todoFragment.removeWork(todoItem)
+            todoItem.state = STATE_RECOMMEND_WORK
             Toast.makeText(requireContext(), "할 일을 제거 했습니다..", Toast.LENGTH_SHORT).show()
         }
     }
@@ -36,6 +40,7 @@ class AddTodoFragment : Fragment(R.layout.fragment_add_todo) {
             adapter = addWorkListadapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+
 
 
 
