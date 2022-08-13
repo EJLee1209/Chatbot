@@ -88,6 +88,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
         // 초기화 작업
         randomRecommendWorksFromDB.clear()
+        randomRecommendWorks.clear()
 
         val sharedPreferences = (activity as MainActivity).getSharedPreferences("user", Context.MODE_PRIVATE)
         userName = sharedPreferences.getString("name","").toString()
@@ -106,7 +107,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             }
             override fun onCancelled(error: DatabaseError) {}
         })
-
         todoDB.addChildEventListener(listener)
         connectRecyclerView()
         buttonClickEvent()
@@ -162,4 +162,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     companion object{
         const val TODO_DB_PATH = "recommendWorks"
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        todoDB.removeEventListener(listener)
+    }
+
+
 }
