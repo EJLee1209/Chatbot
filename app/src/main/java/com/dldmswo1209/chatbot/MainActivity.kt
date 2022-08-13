@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragmentContainerView, fragment)
                 commit()
             }
+       
     }
 
     override fun onResume() {

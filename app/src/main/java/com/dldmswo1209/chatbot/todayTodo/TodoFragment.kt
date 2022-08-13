@@ -1,9 +1,13 @@
 package com.dldmswo1209.chatbot.todayTodo
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dldmswo1209.chatbot.MainActivity
@@ -39,14 +43,24 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val todoItem = snapshot.getValue(TodoItem::class.java) ?: return
 
-            randomRecommendWorks.add(todoItem)
-            todoAdapter.submitList(randomRecommendWorks)
+            randomRecommendWorksFromDB.add(todoItem)
+            todoAdapter.submitList(randomRecommendWorksFromDB)
             todoAdapter.notifyDataSetChanged()
+
+            recommendList.forEach { // 이미 랜덤으로 선정되서 추가된 아이템의 상태를 변경
+                if(it.title == todoItem.title)
+                    it.state = STATE_MUST_TODO
+            }
+            hideProgress()
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
 
-        override fun onChildRemoved(snapshot: DataSnapshot) {}
+        override fun onChildRemoved(snapshot: DataSnapshot) {
+            val removeItem = snapshot.getValue(TodoItem::class.java) ?: return
+            removeWork(removeItem)
+
+        }
 
         override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
 
@@ -64,13 +78,16 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
 
     }
     val randomRecommendWorks = mutableListOf<TodoItem>()
+    val randomRecommendWorksFromDB = mutableListOf<TodoItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTodoBinding.bind(view)
 
+        showProgress()
+
         // 초기화 작업
-        randomRecommendWorks.clear()
+        randomRecommendWorksFromDB.clear()
 
         val sharedPreferences = (activity as MainActivity).getSharedPreferences("user", Context.MODE_PRIVATE)
         userName = sharedPreferences.getString("name","").toString()
@@ -79,25 +96,30 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         todoDB.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    // 이미 오늘의 할 일 추천 목록이 존재 할 때
 
                 }else{
-                    getRandomRecommendList()
-                    saveRandomRecommendListToDB(randomRecommendWorks)
+                    // 오늘의 할 일 추천 목록이 존재하지 않을 때
+                    getRandomRecommendList() // recommendWorks 에서 랜덤으로 5개를 뽑아서 가져옴
+                    saveRandomRecommendListToDB(randomRecommendWorks) // DB 에 할 일 추천 목록 저장
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {}
         })
 
         todoDB.addChildEventListener(listener)
-
         connectRecyclerView()
         buttonClickEvent()
 
     }
+    private fun showProgress(){
+        binding.progressBar.isVisible = true
+    }
+    private fun hideProgress(){
+        binding.progressBar.isVisible = false
+    }
     private fun connectRecyclerView(){
         // 오늘의 할 일 추천 목록 리사이클러뷰 연결
-        todoAdapter.submitList(randomRecommendWorks)
         binding.recommendTodayWorkRecyclerView.apply {
             adapter = todoAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -105,6 +127,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
     }
     private fun getRandomRecommendList(){
         // 할 일 추천 리스트에서 랜덤 5개를 뽑음
+        randomRecommendWorks.clear()
+        randomRecommendWorksFromDB.clear()
         val set = mutableSetOf<TodoItem>()
 
         while(set.size < 5 && randomRecommendWorks.size < 5){
@@ -127,10 +151,12 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         }
     }
     fun addWork(todoItem: TodoItem){
-        randomRecommendWorks.add(todoItem)
+        randomRecommendWorksFromDB.add(todoItem)
+        todoAdapter.notifyDataSetChanged()
     }
     fun removeWork(todoItem: TodoItem){
-        randomRecommendWorks.remove(todoItem)
+        randomRecommendWorksFromDB.remove(todoItem)
+        todoAdapter.notifyDataSetChanged()
     }
 
     companion object{

@@ -15,10 +15,8 @@ class AddWorkListAdapter(val itemClicked: (TodoItem, isActivated: Boolean) -> (U
     inner class ViewHolder(private val binding: RecommendWorkItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(todoItem: TodoItem){
             binding.todoTitle.text = todoItem.title
-            if(todoItem.state == STATE_MUST_TODO || todoItem.state == STATE_DID_WORK){
-                // 이미 할 일 목록에 있거나, 이미 한 일인 경우
-                binding.addSwitch.isChecked = true // 스위치 on
-            }
+            binding.addSwitch.isChecked = todoItem.state == STATE_MUST_TODO || todoItem.state == STATE_DID_WORK
+
             binding.addSwitch.setOnClickListener { // 스위치 클릭 이벤트 처리
                 itemClicked(todoItem, binding.addSwitch.isChecked)
             }
