@@ -1,11 +1,18 @@
 package com.dldmswo1209.chatbot.todayTodo
 
 val recommendList = mutableListOf<TodoItem>(
-    TodoItem("숙제하기",""),
-    TodoItem("일기쓰기",""),
-    TodoItem("운동하기",""),
-    TodoItem("코딩하기",""),
-    TodoItem("샤워하기",""),
+    TodoItem("동네를 한바퀴 산책하기","한바퀴 산책하면서 바람맞았어요"),
+    TodoItem("끝까지 숙제하기","보람차게 숙제를 다 했어요!"),
+    TodoItem("맛있는 간식먹기","오늘도 수고한 나에게 간식을 선물해요"),
+    TodoItem("나른하게 낮잠자기","낮잠을 자는 것은 피로회복에 큰 도움이 돼요"),
+    TodoItem("즐겁게 샤워하기","샤워를 하며 상쾌한 기분을 느꼈어요!"),
+    TodoItem("규칙적인 시간에 취침하고, 일어나기",""),
+    TodoItem("잠들기 전 2시간 전에 스마트폰 내려놓기",""),
+    TodoItem("편안하게 명상하기",""),
+    TodoItem("집중하여 독서하기",""),
+    TodoItem("친구들과 수다떨기",""),
+    TodoItem("좋아하는 노래 듣기",""),
+    TodoItem("땀흘리며 열심히 운동하기",""),
     TodoItem("카페가기",""),
     TodoItem("산책하기",""),
     TodoItem("영화보기",""),
