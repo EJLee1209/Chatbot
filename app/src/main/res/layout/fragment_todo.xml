@@ -6,98 +6,42 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".todayTodo.TodoFragment"
-    android:background="#7AB0B7">
+    android:background="@drawable/background_gradient">
 
-    <ImageView
-        android:id="@+id/todoArrowLeftButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/todoTitle"
-        app:layout_constraintBottom_toBottomOf="@id/todoTitle"
-        android:src="@drawable/left_arrow"
-        android:layout_marginStart="18dp"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/todoTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/todo_title"
-        android:textSize="20sp"
-        android:textColor="@color/title_color"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/todoSecondTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/todo_second_title"
-        android:textSize="20sp"
-        android:textColor="@color/title_color"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/todoTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="13dp"/>
-
-    <ImageView
-        android:id="@+id/todoArrowRightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/right_arrow"
-        app:layout_constraintTop_toTopOf="@id/todoSecondTitle"
-        app:layout_constraintBottom_toBottomOf="@id/todoSecondTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="20dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todoTodayWorkRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="410dp"
-        app:layout_constraintTop_toBottomOf="@id/todoSecondTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
-
-    <TextView
-        android:id="@+id/todoRecommendTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/todo_recommend_title"
-        android:textSize="20sp"
-        android:textColor="@color/title_color"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/todoTodayWorkRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="15dp"/>
-    <ImageView
-        android:id="@+id/RecommendArrowRightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/right_arrow"
-        app:layout_constraintTop_toTopOf="@id/todoRecommendTitle"
-        app:layout_constraintBottom_toBottomOf="@id/todoRecommendTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="20dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommendRecyclerView"
+    <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="105dp"
-        app:layout_constraintTop_toBottomOf="@id/todoRecommendTitle"
+        android:layout_height="535dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendTodayWorkRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="@drawable/todo_white_border"
+            android:paddingBottom="30dp"/>
+        <FrameLayout
+            android:id="@+id/addTodayWorkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal">
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/polygon"/>
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_button"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

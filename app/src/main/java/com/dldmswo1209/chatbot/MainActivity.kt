@@ -17,19 +17,21 @@ import com.dldmswo1209.chatbot.emotionCalendar.AddEmotionFragment
 import com.dldmswo1209.chatbot.emotionCalendar.AnalysisEmotionFragment
 import com.dldmswo1209.chatbot.emotionCalendar.CalendarFragment
 import com.dldmswo1209.chatbot.home.HomeFragment
+import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-    private val todoFragment = TodoFragment()
     private val homeFragment = HomeFragment()
     val calendarFragment = CalendarFragment()
+    lateinit var todoFragment: TodoFragment
     lateinit var depressionTestFragment: DepressionTestFragment
     lateinit var helpFragment: HelpFragment
     lateinit var recommendTestFragment: RecommendTestFragment
     lateinit var addEmotionFragment: AddEmotionFragment
     lateinit var analysisEmotionFragment: AnalysisEmotionFragment
+    lateinit var addTodoFragment: AddTodoFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         recommendTestFragment = RecommendTestFragment()
         addEmotionFragment = AddEmotionFragment()
         analysisEmotionFragment = AnalysisEmotionFragment()
+        addTodoFragment = AddTodoFragment()
+        todoFragment = TodoFragment()
 
         replaceFragment(homeFragment)
 
