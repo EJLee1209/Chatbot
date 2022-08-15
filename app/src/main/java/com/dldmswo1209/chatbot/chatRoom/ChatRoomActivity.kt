@@ -3,6 +3,7 @@ package com.dldmswo1209.chatbot.chatRoom
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -17,6 +18,11 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.IOException
+import java.net.Socket
+import java.net.UnknownHostException
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -45,6 +51,10 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var userDB: SharedPreferences
     private lateinit var userName: String
     private lateinit var chatDB: DatabaseReference
+    private var client: Socket? = null
+    private var dataOutput: DataOutputStream? = null
+    private var dataInput: DataInputStream? = null
+
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val chatItem = snapshot.getValue(ChatItem::class.java) ?: return // DB 에서 객체 형태로 가져옴
@@ -69,6 +79,9 @@ class ChatRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val connect = Connect()
+        connect.execute(CONNECT_MSG)
+
         buttonClickEvent()
 
         // 채팅정보 초기화 작업
@@ -129,10 +142,14 @@ class ChatRoomActivity : AppCompatActivity() {
         binding.inputTextSendButton.setOnClickListener {
             val newText = binding.inputEditTextView.text.toString()
             if(newText == "") return@setOnClickListener
-            val newChat = ChatItem(newText, TYPE_USER)
-            chatItemPushToDB(newChat)
-            binding.inputEditTextView.text.clear()
+//            val newChat = ChatItem(newText, TYPE_USER)
+//            chatItemPushToDB(newChat)
             // todo AI 모델 적용 후 메시지를 인식해서 챗봇 메시지를 추가하는 기능
+            dataOutput ?: return@setOnClickListener
+            Thread {
+                dataOutput!!.writeUTF(newText)
+            }.start()
+
         }
     }
     private fun getCurrentTime(): String{
@@ -151,31 +168,97 @@ class ChatRoomActivity : AppCompatActivity() {
 
         // 임의의 봇 채팅 리스트
         // 사용자가 채팅을 보내면 랜덤으로 채팅이 생성됨
-        val botChatList = mutableListOf<ChatItem>(
-            ChatItem("정말? 즐거운 하루였겠다!", TYPE_BOT),
-            ChatItem("그랬구나, 괜찮아 그럴 수 있지", TYPE_BOT),
-            ChatItem("힘내!!", TYPE_BOT),
-            ChatItem("난 항상 너편이야", TYPE_BOT),
-            ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND),
-            ChatItem("오늘 할 일을 추가해보자!", TYPE_BOT_RECOMMEND),
-            ChatItem("오늘의 기분을 추가해볼까?", TYPE_BOT_RECOMMEND),
-            ChatItem("너가 진심으로 행복했으면 좋겠다", TYPE_BOT),
-            ChatItem("ㅋㅋㅋㅋ", TYPE_BOT),
-        )
-        val idx = Random().nextInt(botChatList.size)
+//        val botChatList = mutableListOf<ChatItem>(
+//            ChatItem("정말? 즐거운 하루였겠다!", TYPE_BOT),
+//            ChatItem("그랬구나, 괜찮아 그럴 수 있지", TYPE_BOT),
+//            ChatItem("힘내!!", TYPE_BOT),
+//            ChatItem("난 항상 너편이야", TYPE_BOT),
+//            ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND),
+//            ChatItem("오늘 할 일을 추가해보자!", TYPE_BOT_RECOMMEND),
+//            ChatItem("오늘의 기분을 추가해볼까?", TYPE_BOT_RECOMMEND),
+//            ChatItem("너가 진심으로 행복했으면 좋겠다", TYPE_BOT),
+//            ChatItem("ㅋㅋㅋㅋ", TYPE_BOT),
+//        )
+//        val idx = Random().nextInt(botChatList.size)
         // 임의로 딜레이를 줘서 AI와 대화하는 것 처럼 보이기 위함
         // 나중에 이부분을 AI 모델을 활용해서 바꾸면 될듯
-        Handler(Looper.getMainLooper()).postDelayed({
-            //실행할 코드
-            val botChat = botChatList[idx]
-            chatDB
-                .child(getCurrentTime())
-                .setValue(botChat)
-
-        }, 1000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            //실행할 코드
+//            val botChat = botChatList[idx]
+//            chatDB
+//                .child(getCurrentTime())
+//                .setValue(botChat)
+//
+//        }, 1000)
     }
 
-    companion object{
-        const val DB_PATH_CHAT = "Chat"
+    private inner class Connect : AsyncTask<String?, String?, Void?>() {
+        private var output_message: String? = null
+        private var input_message: String? = null
+        override fun doInBackground(vararg strings: String?): Void? {
+            try {
+                client = Socket(SERVER_IP, 8080)
+                dataOutput = DataOutputStream(client!!.getOutputStream())
+                dataInput = DataInputStream(client!!.getInputStream())
+                output_message = strings[0]
+                dataOutput!!.writeUTF(output_message)
+                Log.d("testt", output_message!!)
+
+            } catch (e: UnknownHostException) {
+                val str = e.message.toString()
+                Log.w("discnt", "$str 1")
+            } catch (e: IOException) {
+                val str = e.message.toString()
+                Log.w("discnt", "$str 2")
+            }
+            while (true) {
+                try {
+                    val buf = ByteArray(BUF_SIZE)
+                    val read_Byte = dataInput!!.read(buf)
+                    input_message = String(buf, 0, read_Byte)
+                    if (input_message != STOP_MSG) {
+                        publishProgress(input_message)
+                    } else {
+                        // 서버와 연결 끊김
+                        val lastChat = ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND)
+                        chatItemPushToDB(lastChat)
+                        client?.close()
+
+                        break
+                    }
+                    Thread.sleep(2)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+            return null
+        }
+
+        override fun onProgressUpdate(vararg params: String?) {
+            val userText = binding.inputEditTextView.text.toString()
+            val userChat = ChatItem(userText, TYPE_USER)
+            val botChat = ChatItem(params[0].toString(), TYPE_BOT)
+
+            chatItemPushToDB(userChat)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                chatItemPushToDB(botChat)
+            }, 1000)
+
+            binding.inputEditTextView.text.clear()
+        }
+
+
     }
+
+    companion object {
+        private const val SERVER_IP = "192.168.219.104"
+        private const val CONNECT_MSG = "connect"
+        private const val STOP_MSG = "stop"
+        private const val BUF_SIZE = 100
+        private const val DB_PATH_CHAT = "Chat"
+    }
+
 }
