@@ -1,9 +1,7 @@
 package com.dldmswo1209.chatbot.chatRoom
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -11,21 +9,19 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import java.io.DataInputStream
-import java.io.DataOutputStream
-import java.io.IOException
-import java.net.Socket
-import java.net.UnknownHostException
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.*
 
 /***
  * %%%%%%% 필독 %%%%%%%%
@@ -51,14 +47,14 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var userDB: SharedPreferences
     private lateinit var userName: String
     private lateinit var chatDB: DatabaseReference
-    private var client: Socket? = null
-    private var dataOutput: DataOutputStream? = null
-    private var dataInput: DataInputStream? = null
+    lateinit var mRetrofit : Retrofit // 사용할 레트로핏 객체
+    lateinit var mRetrofitAPI: RetrofitAPI // 레트로핏 api 객체
+    lateinit var mCallAIReply : retrofit2.Call<JsonObject> // Json 형식의 데이터를 요청하는 객체
+    private var chatCount = 0
 
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val chatItem = snapshot.getValue(ChatItem::class.java) ?: return // DB 에서 객체 형태로 가져옴
-
 
             chatList.add(chatItem)
             chatAdapter.submitList(chatList)
@@ -79,9 +75,9 @@ class ChatRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val connect = Connect()
-        connect.execute(CONNECT_MSG)
 
+
+        setRetrofit()
         buttonClickEvent()
 
         // 채팅정보 초기화 작업
@@ -130,28 +126,69 @@ class ChatRoomActivity : AppCompatActivity() {
                 val newChat = chat?.let { ChatItem(it, TYPE_USER) }
                 if (newChat != null) {
                     chatItemPushToDB(newChat)
+                    callTodoList(chat)
                 }
             }
         }, 1500)
 
     }
+    private fun setRetrofit() {
+        // retrofit 으로 가져올 url 을 설정하고 세팅
+        mRetrofit = Retrofit.Builder()
+            .baseUrl(getString(R.string.baseUrl))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        // 인터페이스로 만든 레트로핏 api 요청 받는 것 변수로 등록
+        mRetrofitAPI = mRetrofit.create(RetrofitAPI::class.java)
+    }
+
+    private val mRetrofitCallback = (object : retrofit2.Callback<JsonObject>{
+        override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+            val result = response.body()
+            Log.d("testt", "결과는 ${result}")
+
+            var gson = Gson()
+            val dataParsed1 = gson.fromJson(result, RetrofitDTO.ChatItem::class.java)
+            val chatItem = ChatItem(dataParsed1.param, TYPE_BOT)
+            chatItemPushToDB(chatItem)
+
+        }
+
+        override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+            t.printStackTrace()
+            Log.d("testt", "에러입니다. ${t.message}")
+        }
+    })
+    private fun callTodoList(chatText: String){
+        mCallAIReply = mRetrofitAPI.getAIReply(chatText) // RetrofitAPI 에서 JSON 객체를 요청해서 반환하는 메소드 호출
+        mCallAIReply.enqueue(mRetrofitCallback) // 응답을 큐에 넣어 대기 시켜놓음. 즉, 응답이 생기면 뱉어낸다.
+    }
+
     private fun buttonClickEvent(){
         binding.chatRoomLeftArrowButton.setOnClickListener {
             finish()
         }
         binding.inputTextSendButton.setOnClickListener {
             val newText = binding.inputEditTextView.text.toString()
-            if(newText == "") return@setOnClickListener
-//            val newChat = ChatItem(newText, TYPE_USER)
-//            chatItemPushToDB(newChat)
-            // todo AI 모델 적용 후 메시지를 인식해서 챗봇 메시지를 추가하는 기능
-            dataOutput ?: return@setOnClickListener
-            Thread {
-                dataOutput!!.writeUTF(newText)
-            }.start()
+            if (newText == "") return@setOnClickListener
+            val newChat = ChatItem(newText, TYPE_USER)
+            chatItemPushToDB(newChat)
+            if(chatCount == 5){
+                Handler(Looper.getMainLooper()).postDelayed({
+                    chatItemPushToDB(ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND))
+                }, 1000)
+                chatCount = 0
+            }else {
+                // api 서버에 메세지 전달
+                callTodoList(newText)
+                chatCount++
+            }
+            binding.inputEditTextView.text.clear()
 
         }
     }
+
     private fun getCurrentTime(): String{
         var localDateTime = LocalDateTime.now().toString()
         // DB 경로 이름에 특수기호 . # $ [ ] 는 포함 되면 안되서 .을 제거하기 위함
@@ -165,99 +202,10 @@ class ChatRoomActivity : AppCompatActivity() {
         // DB 구조
         // 이름 -> Chat -> 현재날짜(2022-08-11) -> 현재시간(12:55:10) -> ChatItem() 객체로 저장
         chatDB.child(getCurrentTime()).setValue(chat)
-
-        // 임의의 봇 채팅 리스트
-        // 사용자가 채팅을 보내면 랜덤으로 채팅이 생성됨
-//        val botChatList = mutableListOf<ChatItem>(
-//            ChatItem("정말? 즐거운 하루였겠다!", TYPE_BOT),
-//            ChatItem("그랬구나, 괜찮아 그럴 수 있지", TYPE_BOT),
-//            ChatItem("힘내!!", TYPE_BOT),
-//            ChatItem("난 항상 너편이야", TYPE_BOT),
-//            ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND),
-//            ChatItem("오늘 할 일을 추가해보자!", TYPE_BOT_RECOMMEND),
-//            ChatItem("오늘의 기분을 추가해볼까?", TYPE_BOT_RECOMMEND),
-//            ChatItem("너가 진심으로 행복했으면 좋겠다", TYPE_BOT),
-//            ChatItem("ㅋㅋㅋㅋ", TYPE_BOT),
-//        )
-//        val idx = Random().nextInt(botChatList.size)
-        // 임의로 딜레이를 줘서 AI와 대화하는 것 처럼 보이기 위함
-        // 나중에 이부분을 AI 모델을 활용해서 바꾸면 될듯
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            //실행할 코드
-//            val botChat = botChatList[idx]
-//            chatDB
-//                .child(getCurrentTime())
-//                .setValue(botChat)
-//
-//        }, 1000)
     }
 
-    private inner class Connect : AsyncTask<String?, String?, Void?>() {
-        private var output_message: String? = null
-        private var input_message: String? = null
-        override fun doInBackground(vararg strings: String?): Void? {
-            try {
-                client = Socket(SERVER_IP, 8080)
-                dataOutput = DataOutputStream(client!!.getOutputStream())
-                dataInput = DataInputStream(client!!.getInputStream())
-                output_message = strings[0]
-                dataOutput!!.writeUTF(output_message)
-                Log.d("testt", output_message!!)
-
-            } catch (e: UnknownHostException) {
-                val str = e.message.toString()
-                Log.w("discnt", "$str 1")
-            } catch (e: IOException) {
-                val str = e.message.toString()
-                Log.w("discnt", "$str 2")
-            }
-            while (true) {
-                try {
-                    val buf = ByteArray(BUF_SIZE)
-                    val read_Byte = dataInput!!.read(buf)
-                    input_message = String(buf, 0, read_Byte)
-                    if (input_message != STOP_MSG) {
-                        publishProgress(input_message)
-                    } else {
-                        // 서버와 연결 끊김
-                        val lastChat = ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND)
-                        chatItemPushToDB(lastChat)
-                        client?.close()
-
-                        break
-                    }
-                    Thread.sleep(2)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-            }
-            return null
-        }
-
-        override fun onProgressUpdate(vararg params: String?) {
-            val userText = binding.inputEditTextView.text.toString()
-            val userChat = ChatItem(userText, TYPE_USER)
-            val botChat = ChatItem(params[0].toString(), TYPE_BOT)
-
-            chatItemPushToDB(userChat)
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                chatItemPushToDB(botChat)
-            }, 1000)
-
-            binding.inputEditTextView.text.clear()
-        }
-
-
-    }
 
     companion object {
-        private const val SERVER_IP = "192.168.219.104"
-        private const val CONNECT_MSG = "connect"
-        private const val STOP_MSG = "stop"
-        private const val BUF_SIZE = 100
         private const val DB_PATH_CHAT = "Chat"
     }
 
