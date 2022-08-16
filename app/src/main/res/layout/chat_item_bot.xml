@@ -11,12 +11,13 @@
         android:paddingBottom="9dp"
         android:paddingStart="22dp"
         android:paddingEnd="22dp"
-        android:gravity="center"
+        android:gravity="start"
         android:textSize="14sp"
         android:textColor="#363636"
         android:fontFamily="@font/nanumbarungothic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="200dp"
         android:background="@drawable/chat_bubble_bot"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
