@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".emotionCalendar.CalendarFragment">
+    tools:context=".emotionCalendar.FragmentCalendar">
 
     <ScrollView
         android:layout_width="0dp"
@@ -76,8 +76,8 @@
                 android:padding="12dp"
                 android:textSize="15sp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/emotionRecyclerView"
+            <ListView
+                android:id="@+id/emotionListView"
                 android:layout_width="0dp"
                 android:layout_height="545dp"
                 app:layout_constraintTop_toBottomOf="@id/todayEmotionEditTextView"
@@ -86,12 +86,15 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginStart="19dp"
                 android:layout_marginEnd="19dp"
-                android:background="@color/purple_200"/>
+                android:orientation="vertical"
+                tools:listitem="@layout/emotion_item"
+
+                />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/emotionRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/emotionListView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -7,9 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/rectangle_3.xml" value="0.168" />
         <entry key="app/src/main/res/drawable-xxxhdpi/chat_bubble_user.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/bottom_round_rectangle.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/chat_bubble_bot.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/input_text_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/memo_border.xml" value="0.168" />
@@ -18,19 +16,10 @@
         <entry key="app/src/main/res/drawable/select_rectangle.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/switch_thumb_circle.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/switch_thumb_on.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/switch_track.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.12975921630859377" />
         <entry key="app/src/main/res/drawable/test_border.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/text_bubble.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/todo_rectangle.xml" value="0.1325" />
-        <entry key="app/src/main/res/drawable/todo_white_border.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/todo_white_border_item.xml" value="0.1415" />
-        <entry key="app/src/main/res/drawable/top_round_rectangle.xml" value="0.1415" />
         <entry key="app/src/main/res/font/font.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/font/font_nanumbarungothicbold.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/font/font_nanumbarungothiclight.xml" value="0.262037037037037" />
@@ -46,24 +35,24 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_today_work.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_todayemotion_add.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/layout/calendar_item.xml" value="0.22010869565217392" />
         <entry key="app/src/main/res/layout/chat_item_bot.xml" value="0.2598868107450181" />
         <entry key="app/src/main/res/layout/chat_item_bot_recommend.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
-        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.2795120239257813" />
-        <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2528447469075521" />
-        <entry key="app/src/main/res/layout/fragment_add_todo_activity.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/emotion_item.xml" value="0.1770516717325228" />
+        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2871376811594203" />
         <entry key="app/src/main/res/layout/fragment_analysis_emotion.xml" value="0.19005635579427083" />
-        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_depression_test.xml" value="0.22865804036458331" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.24918212890625002" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_recommend_test.xml" value="0.18889516194661454" />
-        <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.2220373844754869" />
+        <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_item_detail.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/recommend_work_item.xml" value="0.26830868447295125" />
-        <entry key="app/src/main/res/layout/work_item.xml" value="0.27103183027626815" />
+        <entry key="app/src/main/res/layout/work_item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24540557861328127" />
       </map>
     </option>
