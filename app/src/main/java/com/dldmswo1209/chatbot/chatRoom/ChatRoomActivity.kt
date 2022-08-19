@@ -50,7 +50,6 @@ class ChatRoomActivity : AppCompatActivity() {
     lateinit var mRetrofit : Retrofit // 사용할 레트로핏 객체
     lateinit var mRetrofitAPI: RetrofitAPI // 레트로핏 api 객체
     lateinit var mCallAIReply : retrofit2.Call<JsonObject> // Json 형식의 데이터를 요청하는 객체
-    private var chatCount = 0
 
     private val listener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -142,9 +141,13 @@ class ChatRoomActivity : AppCompatActivity() {
         // 인터페이스로 만든 레트로핏 api 요청 받는 것 변수로 등록
         mRetrofitAPI = mRetrofit.create(RetrofitAPI::class.java)
     }
+    private fun ServerConnectErrorToast(){
+        Toast.makeText(this, "서버와의 연결상태가 좋지 않습니다.", Toast.LENGTH_SHORT).show()
+    }
 
     private val mRetrofitCallback = (object : retrofit2.Callback<JsonObject>{
         override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+            // 서버에서 데이터 요청 성공시
             val result = response.body()
             Log.d("testt", "결과는 ${result}")
 
@@ -156,8 +159,10 @@ class ChatRoomActivity : AppCompatActivity() {
         }
 
         override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+            // 서버 요청 실패
             t.printStackTrace()
             Log.d("testt", "에러입니다. ${t.message}")
+            ServerConnectErrorToast()
         }
     })
     private fun callTodoList(chatText: String){
@@ -170,21 +175,18 @@ class ChatRoomActivity : AppCompatActivity() {
             finish()
         }
         binding.inputTextSendButton.setOnClickListener {
-            val newText = binding.inputEditTextView.text.toString()
-            if (newText == "") return@setOnClickListener
-            val newChat = ChatItem(newText, TYPE_USER)
-            chatItemPushToDB(newChat)
-            if(chatCount == 5){
-                Handler(Looper.getMainLooper()).postDelayed({
-                    chatItemPushToDB(ChatItem("오늘 있었던 일을 달력에 적어볼까?", TYPE_BOT_RECOMMEND))
-                }, 1000)
-                chatCount = 0
-            }else {
-                // api 서버에 메세지 전달
-                callTodoList(newText)
-                chatCount++
+            // 메세지 보내기 버튼 클릭 이벤트 처리
+            var newText = binding.inputEditTextView.text.toString()
+            if (newText == "") return@setOnClickListener // 입력이 없으면 아래 코드를 실행하지 않음
+            val newChat = ChatItem(newText, TYPE_USER) // 리사이클러뷰에 추가할 ChatItem을 만듬
+
+            if(!newText[newText.length-1].equals(".")){ // 입력문자 마지막에 . 이 없으면 .을 붙임
+                newText = "${newText}."
             }
-            binding.inputEditTextView.text.clear()
+            chatItemPushToDB(newChat) // DB 에 추가 -> DB 리스너를 통해 리사이클러뷰에도 추가 될거임
+            // api 서버에 메세지 전달
+            callTodoList(newText)
+            binding.inputEditTextView.text.clear() // 메세지 입력창 초기화
 
         }
     }
