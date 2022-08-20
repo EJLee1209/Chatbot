@@ -16,7 +16,6 @@ class AddWorkListAdapter(val itemClicked: (TodoItem, isActivated: Boolean) -> (U
         fun bind(todoItem: TodoItem){
             binding.todoTitle.text = todoItem.title
             binding.addSwitch.isChecked = todoItem.state == STATE_MUST_TODO || todoItem.state == STATE_DID_WORK
-
             binding.addSwitch.setOnClickListener { // 스위치 클릭 이벤트 처리
                 itemClicked(todoItem, binding.addSwitch.isChecked)
             }

@@ -20,7 +20,6 @@ class TodoListAdapter(val itemClicked: (TodoItem, isChecked: Boolean)->(Unit)): 
             binding.todoCheckbox.setOnClickListener{ // 체크박스 클릭 이벤트
                 itemClicked(todoItem, binding.todoCheckbox.isChecked)
             }
-
         }
     }
 

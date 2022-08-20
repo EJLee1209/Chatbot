@@ -11,7 +11,7 @@ import com.dldmswo1209.chatbot.depressionTest.HelpFragment
 import com.dldmswo1209.chatbot.depressionTest.RecommendTestFragment
 import com.dldmswo1209.chatbot.emotionCalendar.AddEmotionFragment
 import com.dldmswo1209.chatbot.emotionCalendar.AnalysisEmotionFragment
-import com.dldmswo1209.chatbot.emotionCalendar.FragmentCalendar
+import com.dldmswo1209.chatbot.emotionCalendar.calendarFragment
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
@@ -19,7 +19,7 @@ import com.dldmswo1209.chatbot.todayTodo.TodoFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val homeFragment = HomeFragment()
-    val calendarFragment = FragmentCalendar()
+    val calendarFragment = calendarFragment()
     lateinit var todoFragment: TodoFragment
     lateinit var depressionTestFragment: DepressionTestFragment
     lateinit var helpFragment: HelpFragment

@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
+import com.dldmswo1209.chatbot.adapter.CalendarAdapter
 import com.dldmswo1209.chatbot.databinding.FragmentCalendarBinding
 import java.time.*
 import java.time.format.DateTimeFormatter
@@ -13,15 +15,18 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class FragmentCalendar : Fragment(R.layout.fragment_calendar) {
+class calendarFragment : Fragment(R.layout.fragment_calendar) {
     private lateinit var binding : FragmentCalendarBinding
     lateinit var selectedDate: LocalDate
     private lateinit var calendar: Calendar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentCalendarBinding.bind(view)
-        selectedDate = LocalDate.now()
+        CalendarUtil.selectedDate = LocalDate.now()
         setMonthView()
+        binding.goAddEmotion.setOnClickListener {
+            (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
+        }
         binding.preBtn.setOnClickListener{
             selectedDate = selectedDate.minusMonths(1)
             setMonthView()
@@ -30,6 +35,7 @@ class FragmentCalendar : Fragment(R.layout.fragment_calendar) {
             selectedDate = selectedDate.plusMonths(1)
             setMonthView()
         }
+
     }
 
     private fun setMonthView(){
