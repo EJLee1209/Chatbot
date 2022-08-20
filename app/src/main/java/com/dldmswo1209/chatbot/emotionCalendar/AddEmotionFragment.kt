@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
@@ -33,6 +34,14 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
         //리사이클러뷰
         initRecycler()
 
+        //데이터 저장하는 부분
+        binding.checkButton.setOnClickListener {
+            val emo_test = todayEmotionEditTextView.text.toString()
+            App.prefs.setString("text",emo_test)
+            Toast.makeText(context as Activity,"저장이 완료됐습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
     private fun initRecycler() {
@@ -55,6 +64,7 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
         addEmotionAdapter.datas = datas
         addEmotionAdapter.notifyDataSetChanged()
         emotionRecView.addItemDecoration(VerticalItemDecorator(20))
+
     }
 
     override fun onAttach(context: Context) {

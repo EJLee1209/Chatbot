@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "748066888578",
-    "firebase_url": "https://chatbot-kbsc-default-rtdb.firebaseio.com",
-    "project_id": "chatbot-kbsc",
-    "storage_bucket": "chatbot-kbsc.appspot.com"
+    "project_number": "567821510633",
+    "project_id": "calendar-data-ab04b",
+    "storage_bucket": "calendar-data-ab04b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:748066888578:android:c1ac7efb03aafaa39a4d9b",
+        "mobilesdk_app_id": "1:567821510633:android:bac72237a98ce791fe0d78",
         "android_client_info": {
           "package_name": "com.dldmswo1209.chatbot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "748066888578-j9jii7jjeqges8g4irofbda8076fhbs6.apps.googleusercontent.com",
+          "client_id": "567821510633-s034nprhc0onmhj5st4108okketqtk7v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBAe_k6-rA2o7W14dmMLwdCX2gVdXuSo5c"
+          "current_key": "AIzaSyBkxR8aTjhonhqiSvh139yC-MfrZWfPB6U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "748066888578-j9jii7jjeqges8g4irofbda8076fhbs6.apps.googleusercontent.com",
+              "client_id": "567821510633-s034nprhc0onmhj5st4108okketqtk7v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -14,7 +15,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
