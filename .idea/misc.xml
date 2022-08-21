@@ -41,7 +41,7 @@
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
         <entry key="app/src/main/res/layout/emotion_item.xml" value="0.1770516717325228" />
-        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.24278717041015624" />
         <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2871376811594203" />
         <entry key="app/src/main/res/layout/fragment_analysis_emotion.xml" value="0.19005635579427083" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.33053741455078123" />

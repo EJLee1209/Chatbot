@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'androidx.fragment:fragment-ktx:1.1.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

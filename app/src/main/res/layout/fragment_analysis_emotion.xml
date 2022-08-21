@@ -61,6 +61,7 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginEnd="17dp"
                 android:background="@color/purple_200"/>
+
             <TextView
                 android:id="@+id/bestDayTitle"
                 android:layout_width="wrap_content"

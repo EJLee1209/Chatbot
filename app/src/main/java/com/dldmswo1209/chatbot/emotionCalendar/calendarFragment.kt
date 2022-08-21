@@ -1,6 +1,7 @@
 package com.dldmswo1209.chatbot.emotionCalendar
 
 import android.os.Bundle
+import android.provider.Settings.Global.getString
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,6 +36,10 @@ class calendarFragment : Fragment(R.layout.fragment_calendar) {
             selectedDate = selectedDate.plusMonths(1)
             setMonthView()
         }
+        //오늘 있던일
+        val todayemotion = App.prefs.getString("text","")
+        binding.todayemotionedt.text = todayemotion
+
 
     }
 
@@ -56,7 +61,7 @@ class calendarFragment : Fragment(R.layout.fragment_calendar) {
         var dayList = ArrayList<LocalDate?>()
         var yearMonth = YearMonth.from(date)
         var lastDay = yearMonth.lengthOfMonth()
-        var firstDay = selectedDate.withDayOfMonth(1)
+        var firstDay = CalendarUtil.selectedDate.withDayOfMonth(1)
         var dayOfWeek = firstDay.dayOfWeek.value
 
         for(i in 1..41){
