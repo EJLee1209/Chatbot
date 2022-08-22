@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dldmswo1209.chatbot.R
+import com.dldmswo1209.chatbot.adapter.ChatListAdapter
 import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -91,7 +92,7 @@ class ChatRoomActivity : AppCompatActivity() {
         chatAdapter = ChatListAdapter { yesOrNo ->
             if (yesOrNo) {
                 // true : 좋아! 를 누른 경우
-                val sharedPreferences = getSharedPreferences("question", Context.MODE_PRIVATE)
+                val sharedPreferences = getSharedPreferences("question", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
                 editor.apply {
                     putBoolean("yesOrNo", true)

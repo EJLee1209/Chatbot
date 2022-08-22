@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/add_button.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable-v24/rectangle_2.xml" value="0.168" />
         <entry key="app/src/main/res/drawable-v24/rectangle_3.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable-v24/rectangle_add_button.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable-xxxhdpi/chat_bubble_user.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bottom_round_rectangle.xml" value="0.1415" />
@@ -52,8 +54,9 @@
         <entry key="app/src/main/res/layout/chat_item_bot_recommend.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
-        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.24810269461028947" />
-        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.2795120239257813" />
+        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.22526397705078127" />
+        <entry key="app/src/main/res/layout/finish_item.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.25785980224609384" />
         <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2528447469075521" />
         <entry key="app/src/main/res/layout/fragment_add_todo_activity.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_analysis_emotion.xml" value="0.19005635579427083" />

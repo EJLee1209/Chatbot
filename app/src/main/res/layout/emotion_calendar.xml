@@ -20,16 +20,18 @@
 
             <FrameLayout
                 android:id="@+id/calendarFrameLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="320dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="30dp">
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/emotionCalendar"
-                    android:layout_width="330dp"
-                    android:layout_height="320dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/calendar_background"
                     android:layout_marginTop="17dp"/>
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -75,91 +77,264 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </FrameLayout>
 
-            <TextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/todayEmotionTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="오늘 느꼈던 감정"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
                 app:layout_constraintTop_toBottomOf="@id/calendarFrameLayout"
                 app:layout_constraintStart_toStartOf="@id/calendarFrameLayout"
-                android:layout_marginTop="23dp"/>
+                android:layout_marginTop="21dp"
+                android:background="@drawable/chat_bubble_bot"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오늘 느꼈던 감정"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/todayTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2022년 8월 22일"
+                    android:textSize="10sp"
+                    android:textColor="#667080"
+                    android:layout_marginStart="22dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/todayEmotionRecyclerView"
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/todayEmotionLinearLayout"
                 android:layout_width="0dp"
-                android:layout_height="105dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/todayEmotionTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="13dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="23dp"
-                android:background="@color/purple_200"/>
+                android:gravity="center">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="160dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/calendar_background"
+                    android:layout_marginEnd="12dp">
+                    <TextView
+                        android:id="@+id/positiveEmotionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="긍정적인 감정"
+                        android:textSize="14sp"
+                        android:textColor="#363636"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginStart="9dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="행복, 기쁨 등"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/positiveEmotionTitle"
+                        app:layout_constraintTop_toTopOf="@id/positiveEmotionTitle"
+                        app:layout_constraintBottom_toBottomOf="@id/positiveEmotionTitle"
+                        android:layout_marginStart="3dp"/>
+                    
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/positiveEmotionPieChart"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="4dp"/>
+                    <TextView
+                        android:id="@+id/happyPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="행복 80%"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
+                        app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="11dp"/>
+                    <TextView
+                        android:id="@+id/pleasurePercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기쁨 20%"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
+                        app:layout_constraintTop_toBottomOf="@id/happyPercent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="160dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/calendar_background">
+
+                    <TextView
+                        android:id="@+id/negativeEmotionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="부정적인 감정"
+                        android:textSize="14sp"
+                        android:textColor="#363636"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginStart="9dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="행복, 기쁨 등"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/negativeEmotionTitle"
+                        app:layout_constraintTop_toTopOf="@id/negativeEmotionTitle"
+                        app:layout_constraintBottom_toBottomOf="@id/negativeEmotionTitle"
+                        android:layout_marginStart="3dp"/>
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/negativeEmotionPieChart"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="4dp"/>
+                    <TextView
+                        android:id="@+id/sadPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="슬픔 80%"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                        app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="11dp"/>
+                    <TextView
+                        android:id="@+id/depressedPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="우울 20%"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                        app:layout_constraintTop_toBottomOf="@id/sadPercent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"/>
+                    <TextView
+                        android:id="@+id/angerPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분노 20%"
+                        android:textSize="10sp"
+                        android:textColor="#979797"
+                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                        app:layout_constraintTop_toBottomOf="@id/depressedPercent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+            <TextView
+                android:id="@+id/addEmotionButton"
+                android:layout_width="168dp"
+                android:layout_height="40dp"
+                android:text="기록하기"
+                android:textSize="16sp"
+                android:textColor="#363636"
+                android:gravity="center"
+                android:background="@drawable/rectangle_add_button"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/todayEmotionLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="13dp"/>
 
             <TextView
                 android:id="@+id/todayEventTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
                 android:text="오늘 있었던 일"
-                android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textColor="#363636"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/todayEmotionRecyclerView"
-                app:layout_constraintStart_toStartOf="@id/todayEmotionRecyclerView"
+                android:gravity="center"
+                android:background="@drawable/chat_bubble_bot"
+                app:layout_constraintTop_toBottomOf="@id/addEmotionButton"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="23dp"/>
 
-            <FrameLayout
-                android:id="@+id/todayEventFrameLayout"
+            <TextView
+                android:id="@+id/todayEventTextView"
                 android:layout_width="0dp"
-                android:layout_height="239dp"
-                app:layout_constraintTop_toBottomOf="@id/todayEventTitle"
+                android:layout_height="190dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="230dp"
-                    android:background="@drawable/rectangle_2"
-                    android:layout_marginTop="9dp"/>
-
-                <TextView
-                    android:id="@+id/addEmotionButton"
-                    android:layout_width="168dp"
-                    android:layout_height="40dp"
-                    android:text="오늘의 기분 추가하기"
-                    android:textSize="14sp"
-                    android:textColor="#667080"
-                    android:gravity="center"
-                    android:background="@drawable/rectangle_3"
-                    android:layout_gravity="center_horizontal"/>
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@id/todayEventTitle"
+                android:background="@drawable/calendar_background"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:paddingTop="16dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="16dp"/>
 
             <TextView
                 android:id="@+id/finishWorkTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
                 android:text="끝낸 일"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/todayEventFrameLayout"
-                app:layout_constraintStart_toStartOf="@id/todayEventFrameLayout"
+                android:gravity="center"
+                android:background="@drawable/chat_bubble_bot"
+                app:layout_constraintTop_toBottomOf="@id/todayEventTextView"
+                app:layout_constraintStart_toStartOf="@id/todayEventTextView"
                 android:layout_marginTop="23dp"/>
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/finishWorkRightArrowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_arrow"
+                app:layout_constraintTop_toTopOf="@id/finishWorkTitle"
+                app:layout_constraintBottom_toBottomOf="@id/finishWorkTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"/>
             
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/finishWorkRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="94dp"
+                android:layout_height="130dp"
                 app:layout_constraintTop_toBottomOf="@id/finishWorkTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:background="@color/purple_200"/>
+                android:layout_marginTop="7dp"
+                android:background="@drawable/calendar_background"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             <View
                 android:layout_width="0dp"
