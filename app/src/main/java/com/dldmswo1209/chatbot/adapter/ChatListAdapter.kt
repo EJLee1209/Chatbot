@@ -1,4 +1,4 @@
-package com.dldmswo1209.chatbot.chatRoom
+package com.dldmswo1209.chatbot.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.chatbot.R
+import com.dldmswo1209.chatbot.chatRoom.ChatItem
+import com.dldmswo1209.chatbot.chatRoom.TYPE_BOT
+import com.dldmswo1209.chatbot.chatRoom.TYPE_BOT_RECOMMEND
 
-class ChatListAdapter(val onItemClicked: (Boolean) -> Unit) : ListAdapter<ChatItem, RecyclerView.ViewHolder>(diffUtil) {
+class ChatListAdapter(val onItemClicked: (Boolean) -> Unit) : ListAdapter<ChatItem, RecyclerView.ViewHolder>(
+    diffUtil
+) {
     override fun getItemViewType(position: Int): Int {
         return currentList[position].type
     }
@@ -66,7 +71,7 @@ class ChatListAdapter(val onItemClicked: (Boolean) -> Unit) : ListAdapter<ChatIt
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(currentList[position].type){
-            TYPE_BOT->{
+            TYPE_BOT ->{
                 (holder as BotViewHolder).bind(currentList[position])
                 holder.setIsRecyclable(false)
             }

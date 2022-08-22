@@ -41,7 +41,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 android:textSize="12sp"
                 android:textColor="#363636"
                 android:textStyle="bold"
-                android:layout_marginEnd="28dp"/>
+                android:layout_marginEnd="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +110,9 @@
                 android:adjustViewBounds="true"
                 app:layout_constrainedHeight="true"
                 tools:listitem="@layout/calendar_item"
-                android:padding="20dp"/>
+                android:paddingStart="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
