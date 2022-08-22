@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LightColorTextViewStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#D9D9D9</item>
+    </style>
+    <style name="weekendColor" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#E77C7C</item>
+    </style>
+</resources>

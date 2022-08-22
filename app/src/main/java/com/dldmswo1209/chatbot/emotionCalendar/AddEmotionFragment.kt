@@ -9,11 +9,11 @@ import com.dldmswo1209.chatbot.databinding.FragmentAddEmotionBinding
 
 class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
     private lateinit var binding: FragmentAddEmotionBinding
-    private lateinit var calendarFragment: CalendarFragment
+    private lateinit var calendarFragment: EmotionCalendar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddEmotionBinding.bind(view)
-        calendarFragment = CalendarFragment()
+        calendarFragment = EmotionCalendar()
 
         binding.backButton.setOnClickListener {
             (activity as MainActivity).replaceFragment(calendarFragment)
