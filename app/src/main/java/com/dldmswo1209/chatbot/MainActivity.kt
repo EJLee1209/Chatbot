@@ -1,30 +1,25 @@
 package com.dldmswo1209.chatbot
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
 import com.dldmswo1209.chatbot.depressionTest.DepressionTestFragment
 import com.dldmswo1209.chatbot.depressionTest.HelpFragment
 import com.dldmswo1209.chatbot.depressionTest.RecommendTestFragment
 import com.dldmswo1209.chatbot.emotionCalendar.AddEmotionFragment
 import com.dldmswo1209.chatbot.emotionCalendar.AnalysisEmotionFragment
-import com.dldmswo1209.chatbot.emotionCalendar.CalendarFragment
+import com.dldmswo1209.chatbot.emotionCalendar.EmotionCalendar
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val homeFragment = HomeFragment()
-    val calendarFragment = CalendarFragment()
+    val calendarFragment = EmotionCalendar()
     lateinit var todoFragment: TodoFragment
     lateinit var depressionTestFragment: DepressionTestFragment
     lateinit var helpFragment: HelpFragment
