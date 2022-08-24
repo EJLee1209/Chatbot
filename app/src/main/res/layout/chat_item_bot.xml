@@ -12,7 +12,7 @@
         android:paddingStart="22dp"
         android:paddingEnd="22dp"
         android:gravity="start"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:textColor="#363636"
         android:fontFamily="@font/nanumbarungothic"
         android:layout_width="wrap_content"

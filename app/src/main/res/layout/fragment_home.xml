@@ -25,26 +25,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/mainSpeechBubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/whatHappen"
-        android:textSize="14sp"
-        android:textColor="@color/text_color"
-        android:textStyle="bold"
-        android:fontFamily="@font/nanumbarungothic"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="9dp"
-        android:paddingBottom="9dp"
-        android:gravity="center"
+        android:src="@drawable/pill"
         app:layout_constraintTop_toBottomOf="@id/mainTitleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/text_bubble"/>
-
+        android:layout_marginTop="60dp"/>
 
     <FrameLayout
         android:id="@+id/mainImageFrameLayout"
@@ -83,6 +72,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:hint="@string/input_text_hint"
+            android:textColorHint="#DCE8E4"
+            android:textSize="16sp"
             android:paddingStart="18dp"
             android:paddingTop="13dp"
             android:paddingBottom="13dp"

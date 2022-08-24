@@ -9,6 +9,6 @@
     <string name="todo_title">오늘의 할 일</string>
     <string name="todo_second_title">오늘은 이런 일을 했어요</string>
     <string name="todo_recommend_title">이런 것도 해보는 건 어때요?</string>
-    <string name="baseUrl">http://192.168.219.104:8000</string>
+    <string name="baseUrl">http://10.50.251.37:8000</string>
     <string name="calendar_year_month_format">yyyy년 MM월</string>
 </resources>
