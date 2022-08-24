@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable-v24/rectangle_3.xml" value="0.168" />
         <entry key="app/src/main/res/drawable-v24/rectangle_add_button.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable-xxxhdpi/chat_bubble_user.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_calendar_gradient.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bottom_round_rectangle.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/calendar_background.xml" value="0.113" />
@@ -35,6 +36,7 @@
         <entry key="app/src/main/res/drawable/todo_white_border_item.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/top_round_rectangle.xml" value="0.1415" />
         <entry key="app/src/main/res/font/font.xml" value="0.262037037037037" />
+        <entry key="app/src/main/res/font/font_nanumbarungothic.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/font/font_nanumbarungothicbold.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/font/font_nanumbarungothiclight.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/font/font_nanumbarungothicultralight.xml" value="0.262037037037037" />
@@ -54,7 +56,7 @@
         <entry key="app/src/main/res/layout/chat_item_bot_recommend.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
-        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.22526397705078127" />
+        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.16159973144531253" />
         <entry key="app/src/main/res/layout/finish_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.25785980224609384" />
         <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2528447469075521" />
@@ -63,7 +65,7 @@
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.28351073088469325" />
         <entry key="app/src/main/res/layout/fragment_depression_test.xml" value="0.22865804036458331" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.24918212890625002" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22893588301064313" />
         <entry key="app/src/main/res/layout/fragment_recommend_test.xml" value="0.18889516194661454" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.2220373844754869" />
         <entry key="app/src/main/res/layout/recommend_item.xml" value="0.19610507246376813" />

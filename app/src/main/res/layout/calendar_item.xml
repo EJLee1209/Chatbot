@@ -8,6 +8,7 @@
         android:id="@+id/dateTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/font_nanumbarungothic"
         android:text="1"
         android:textSize="12sp"
         android:textColor="#363636"

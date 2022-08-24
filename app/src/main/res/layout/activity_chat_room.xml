@@ -11,9 +11,9 @@
         android:id="@+id/chatRoomLeftArrowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:src="@drawable/left_arrow"
-        android:layout_margin="11dp"/>
+        android:layout_margin="11dp"
+        app:tint="@color/white" />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -54,6 +54,7 @@
             android:layout_height="match_parent"
             android:hint="@string/input_text_hint"
             android:textColorHint="#E1E5EB"
+            android:textSize="16sp"
             android:paddingStart="18dp"
             android:paddingTop="13dp"
             android:paddingBottom="13dp"

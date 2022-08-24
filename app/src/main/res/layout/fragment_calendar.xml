@@ -16,6 +16,7 @@
             android:id="@+id/calendarYearMonthTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font_nanumbarungothic"
             android:text="2022년 8월"
             android:textColor="#363636"
             android:textSize="16sp"
@@ -37,6 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="일"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -45,6 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="월"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -53,6 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="화"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -61,6 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="수"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -69,6 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="목"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -77,6 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="금"
                 android:textSize="12sp"
                 android:textColor="#363636"
@@ -85,6 +92,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:text="토"
                 android:textSize="12sp"
                 android:textColor="#363636"

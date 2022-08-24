@@ -1,29 +1,32 @@
 package com.dldmswo1209.chatbot.emotionCalendar
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.dldmswo1209.chatbot.MainActivity
-
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.CalendarFragmentAdapter
 import com.dldmswo1209.chatbot.adapter.FinishedWorkListAdapter
 import com.dldmswo1209.chatbot.databinding.EmotionCalendarBinding
-import com.dldmswo1209.chatbot.databinding.FragmentCalendarBinding
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoItem
 import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_DID_WORK
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.emotion_calendar.*
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
     private lateinit var binding: EmotionCalendarBinding
@@ -66,6 +69,7 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
 
         val calendarFragmentAdapter = CalendarFragmentAdapter(requireActivity())
 
+
         binding.emotionCalendar.apply {
             adapter = calendarFragmentAdapter
             orientation = ViewPager2.ORIENTATION_VERTICAL
@@ -83,6 +87,7 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         binding.calendarFrameLayout.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
         }
+
 
     }
 
