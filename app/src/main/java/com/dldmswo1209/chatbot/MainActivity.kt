@@ -3,6 +3,7 @@ package com.dldmswo1209.chatbot
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
@@ -15,6 +16,7 @@ import com.dldmswo1209.chatbot.emotionCalendar.EmotionCalendar
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -27,12 +29,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var addEmotionFragment: AddEmotionFragment
     lateinit var analysisEmotionFragment: AnalysisEmotionFragment
     lateinit var addTodoFragment: AddTodoFragment
+    lateinit var userName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
+        userName = sharedPreferences.getString("name",null).toString()
 
         depressionTestFragment = DepressionTestFragment()
         helpFragment = HelpFragment()
@@ -46,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonClickEvent()
 
+        Log.d("testt", LocalDate.now().toString())
 
     }
     private fun buttonClickEvent(){

@@ -104,6 +104,17 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/todayEmotionRightArrowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/todayEmotionTitle"
+                app:layout_constraintBottom_toBottomOf="@id/todayEmotionTitle"
+                android:src="@drawable/right_arrow"
+                app:layout_constraintStart_toEndOf="@id/todayEmotionTitle"
+                android:layout_marginStart="61dp"/>
+
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/todayEmotionLinearLayout"
                 android:layout_width="0dp"
@@ -115,6 +126,7 @@
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="23dp"
                 android:gravity="center">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="160dp"
                     android:layout_height="110dp"
@@ -152,7 +164,7 @@
                         app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"/>
+                        android:layout_marginTop="4dp" />
                     <TextView
                         android:id="@+id/happyPercent"
                         android:layout_width="wrap_content"
@@ -331,8 +343,8 @@
                 android:src="@drawable/right_arrow"
                 app:layout_constraintTop_toTopOf="@id/finishWorkTitle"
                 app:layout_constraintBottom_toBottomOf="@id/finishWorkTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintStart_toEndOf="@id/finishWorkTitle"
+                android:layout_marginStart="200dp"/>
             
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/finishWorkRecyclerView"

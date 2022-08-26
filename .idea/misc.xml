@@ -56,7 +56,7 @@
         <entry key="app/src/main/res/layout/chat_item_bot_recommend.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
-        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.16159973144531253" />
+        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.241595458984375" />
         <entry key="app/src/main/res/layout/finish_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.25785980224609384" />
         <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2528447469075521" />
@@ -71,7 +71,7 @@
         <entry key="app/src/main/res/layout/recommend_item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_item_detail.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_work_item.xml" value="0.26830868447295125" />
-        <entry key="app/src/main/res/layout/work_item.xml" value="0.27103183027626815" />
+        <entry key="app/src/main/res/layout/work_item.xml" value="0.23425662275673692" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24540557861328127" />
       </map>
     </option>
