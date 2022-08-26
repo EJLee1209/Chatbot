@@ -212,7 +212,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="행복, 기쁨 등"
+                        android:text="슬픔,우울,분노 등"
                         android:textSize="10sp"
                         android:textColor="#979797"
                         android:fontFamily="@font/font_nanumbarungothic"
@@ -350,6 +350,7 @@
                 android:id="@+id/finishWorkRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="130dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintTop_toBottomOf="@id/finishWorkTitle"
                 app:layout_constraintStart_toStartOf="@id/calendarFrameLayout"
                 app:layout_constraintEnd_toEndOf="@id/calendarFrameLayout"

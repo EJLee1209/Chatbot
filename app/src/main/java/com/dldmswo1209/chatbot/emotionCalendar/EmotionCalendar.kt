@@ -14,11 +14,9 @@ import com.dldmswo1209.chatbot.databinding.EmotionCalendarBinding
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoItem
 import com.dldmswo1209.chatbot.todayTodo.TodoItem.Companion.STATE_DID_WORK
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -35,6 +33,13 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
     private lateinit var todayEmotionDB: DatabaseReference
     private val finishedWorkList = mutableListOf<TodoItem>()
     private val finishedWorkListAdapter = FinishedWorkListAdapter()
+    private val customColors = mutableListOf(
+        ColorTemplate.rgb("#EACB82"),
+        ColorTemplate.rgb("#DCE8E4"),
+        ColorTemplate.rgb("#089371"),
+        ColorTemplate.rgb("#3A5F62"),
+        ColorTemplate.rgb("#F8FBF6")
+    )
     private val todayEmotionListener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val emotionData = snapshot.getValue(EmotionData::class.java) ?: return
@@ -59,7 +64,8 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
                     val positiveDataSet = PieDataSet(positiveValue, "")
                     positiveDataSet.sliceSpace = 2f
                     positiveDataSet.selectionShift = 1.5f
-                    positiveDataSet.setColors(*ColorTemplate.MATERIAL_COLORS)
+                    positiveDataSet.colors = customColors
+
 
                     val positiveData = PieData(positiveDataSet)
                     positiveData.setValueTextColor(Color.WHITE)
@@ -68,7 +74,7 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
                     val negativeDataSet = PieDataSet(negativeValue, "")
                     negativeDataSet.sliceSpace = 2f
                     negativeDataSet.selectionShift = 1.5f
-                    negativeDataSet.setColors(*ColorTemplate.MATERIAL_COLORS)
+                    negativeDataSet.colors = customColors
                     val negativeData = PieData(negativeDataSet)
                     negativeData.setValueTextColor(Color.WHITE)
                     negativeData.setValueTextSize(10f)
@@ -86,7 +92,8 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
 
         }
 
-        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+        }
 
         override fun onChildRemoved(snapshot: DataSnapshot) {}
 
