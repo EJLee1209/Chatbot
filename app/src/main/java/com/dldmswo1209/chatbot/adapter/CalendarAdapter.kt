@@ -65,11 +65,11 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
         fun bind(data: Int, position: Int, context: Context) {
             val firstDateIndex = furangCalendar.prevTail
             val lastDateIndex = dataList.size - furangCalendar.nextHead - 1
-            val month = String.format("%02d",date.month+1)
-            val year = date.year+1900
 
-            Log.d("testt", "year : $year")
-            Log.d("testt", "month : ${month}")
+            var yearMonth: String = SimpleDateFormat(
+                context.getString(R.string.year_month_format),
+                Locale.KOREA
+            ).format(date)
 
             // 날짜 표시
             itemCalendarDateText.setText(data.toString())
@@ -96,8 +96,10 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                         val emotion = snapshot.getValue(EmotionData::class.java)?:return
                         val date = emotion.date.split('-')
+                        val year = yearMonth.split('-')[0]
+                        val month = yearMonth.split('-')[1]
 
-                        if(date[0] == year.toString() && date[1] == month.toString() && date[2] == String.format("%02d",data)){
+                        if(date[0] == year && date[1] == month && date[2] == String.format("%02d",data)){
                             val positiveEmotion = emotion.happy + emotion.pleasure
                             val negativeEmotion = emotion.anger + emotion.sad + emotion.depressed
                             if(positiveEmotion >= negativeEmotion){
@@ -122,7 +124,6 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
                     override fun onCancelled(error: DatabaseError) {}
                 }
                 db.addChildEventListener(listener)
-
             }
 
 
