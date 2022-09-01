@@ -52,7 +52,9 @@ class RadarChartView(context: Context?, attrs: AttributeSet?) : View(context, at
 
         paint.color = ColorTemplate.rgb("#7AB0B7")
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = 1f
+        paint.strokeWidth = 2f
+
+
         val radian = PI.toFloat() * 2 / 5 // 360도를 5분할한 각만큼 회전시키 위해
         val step = 5 // 데이터 가이드 라인은 5단계로 표시한다
         val heightMaxValue = height / 2 * 0.7f // RadarChartView영역내에 모든 그림이 그려지도록 max value가 그려질 높이

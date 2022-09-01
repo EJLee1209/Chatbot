@@ -1,13 +1,15 @@
 package com.dldmswo1209.chatbot.emotionCalendar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.dldmswo1209.chatbot.CharacteristicType
-import com.dldmswo1209.chatbot.MainActivity
+import com.dldmswo1209.chatbot.*
 import com.dldmswo1209.chatbot.R
-import com.dldmswo1209.chatbot.RadarChartData
+import com.dldmswo1209.chatbot.chatRoom.ChatItem
+import com.dldmswo1209.chatbot.chatRoom.TYPE_USER
 import com.dldmswo1209.chatbot.databinding.FragmentAnalysisEmotionBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -30,11 +32,14 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
     private var depressedAvg = 0
     private var angerAvg = 0
 
+    private val allEmotionData = mutableListOf<EmotionData>()
 
     private val listener= object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val emotionData = snapshot.getValue(EmotionData::class.java) ?: return
             // 해당 월의 모든 감정 데이터를 가져와서
+
+            allEmotionData.add(emotionData)
 
             // 감정 수치 누적
             happy += emotionData.happy
@@ -74,6 +79,10 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
 
             binding.emotionRadarChart.setDataList(dataList)
 
+
+
+
+
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -92,6 +101,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAnalysisEmotionBinding.bind(view)
+        allEmotionData.clear()
 
         val date = LocalDate.now().toString()
         val yearMonthDay = date.split("-")
@@ -100,9 +110,33 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         db = Firebase.database.reference.child((context as MainActivity).userName).child("emotionRecord").child(yearMonth)
         db.addChildEventListener(listener)
 
-
-
         clickedEvent()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            var max = 0
+            var maxIdx = 0
+            allEmotionData.forEachIndexed { index, data ->
+                val positiveEmotion = data.happy + data.pleasure
+                // 긍정적인 감정의 최댓값을 찾기 위함
+                if(positiveEmotion > max){
+                    max = positiveEmotion
+                    maxIdx = index
+                }
+            }
+
+            val dataList = ArrayList<BarChartData>()
+            dataList.add(BarChartData(CharacteristicType.happy, allEmotionData[maxIdx].happy))
+            dataList.add(BarChartData(CharacteristicType.pleasure, allEmotionData[maxIdx].pleasure))
+            dataList.add(BarChartData(CharacteristicType.sad, allEmotionData[maxIdx].sad))
+            dataList.add(BarChartData(CharacteristicType.depressed, allEmotionData[maxIdx].depressed))
+            dataList.add(BarChartData(CharacteristicType.anger, allEmotionData[maxIdx].anger))
+
+            binding.barChartView.setData(dataList,10,0,10)
+            val date = allEmotionData[maxIdx].date.split("-")
+            binding.bestDayTitle.text = "${date[1]}월 ${date[2]}일이 제일 즐거운 날이었어요!"
+
+        }, 1000)
+
 
     }
 
@@ -113,5 +147,10 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         binding.testButton.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).recommendTestFragment)
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        db.removeEventListener(listener)
     }
 }
