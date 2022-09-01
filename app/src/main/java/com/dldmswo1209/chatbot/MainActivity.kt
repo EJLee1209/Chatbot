@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var analysisEmotionFragment: AnalysisEmotionFragment
     lateinit var addTodoFragment: AddTodoFragment
     lateinit var userName : String
+    var date = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

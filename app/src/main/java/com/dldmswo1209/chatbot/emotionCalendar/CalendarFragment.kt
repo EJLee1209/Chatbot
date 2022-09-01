@@ -67,7 +67,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         val calendarLayout = view.findViewById<LinearLayoutCompat>(R.id.calendarLayout)
         val gridLayoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
         val calendarAdapter = CalendarAdapter(requireContext(), calendarLayout, currentDate) {
-            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
+            (activity as MainActivity).date = it
+            (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
         }
 
         binding.calendarView.adapter = calendarAdapter

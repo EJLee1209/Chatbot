@@ -13,4 +13,5 @@
     <color name="status_bar_color">#DCE8E4</color>
     <color name="pie_color">#EACB82</color>
     <color name="pie_color2">#DCE8E4</color>
+    <color name="radar_color">#DCE8E4</color>
 </resources>

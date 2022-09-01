@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.dldmswo1209.chatbot.MainActivity
@@ -66,7 +67,6 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
                     positiveDataSet.selectionShift = 1.5f
                     positiveDataSet.colors = customColors
 
-
                     val positiveData = PieData(positiveDataSet)
                     positiveData.setValueTextColor(Color.WHITE)
                     positiveData.setValueTextSize(10f)
@@ -86,6 +86,9 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
                     negativeEmotionPieChart.legend.isEnabled = false
                     negativeEmotionPieChart.data = negativeData
                     negativeEmotionPieChart.isActivated = true
+
+                    binding.panelTextView.isGone = true
+                    binding.addEmotionButton.text = "수정하기"
                 }
 
             }
@@ -175,9 +178,6 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         binding.todayTextView.text = formattedDate
         binding.addEmotionButton.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
-        }
-        binding.calendarFrameLayout.setOnClickListener {
-            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
         }
         binding.todayEmotionRightArrowButton.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)

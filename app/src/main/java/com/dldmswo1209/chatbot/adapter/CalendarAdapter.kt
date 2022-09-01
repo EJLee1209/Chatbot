@@ -27,7 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 // 높이를 구하는데 필요한 LinearLayout과 FurangCalender를 사용할 때 필요한 date를 받는다.
-class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutCompat, val date: Date, val itemClicked: () ->(Unit)) :
+class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutCompat, val date: Date, val itemClicked: (String) ->(Unit)) :
     RecyclerView.Adapter<CalendarAdapter.CalendarItemHolder>() {
 
     private val TAG = javaClass.simpleName
@@ -128,7 +128,9 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
 
 
             itemView.setOnClickListener {
-                itemClicked()
+                if(position in firstDateIndex..lastDateIndex) {
+                    itemClicked("$yearMonth-${String.format("%02d",data)}")
+                }
             }
         }
 

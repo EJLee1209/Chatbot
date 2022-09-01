@@ -33,7 +33,6 @@ class AddTodoFragment : Fragment(R.layout.fragment_add_todo) {
         val sharedPreferences = (activity as MainActivity).getSharedPreferences("user", Context.MODE_PRIVATE)
         userName = sharedPreferences.getString("name","").toString()
 
-
         val todoDB = Firebase.database.reference
             .child(userName)
             .child(TodoFragment.TODO_DB_PATH)
