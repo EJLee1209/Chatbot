@@ -385,10 +385,21 @@
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/analEmotionButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="감정분석 하러가기"
+                app:layout_constraintStart_toStartOf="@id/finishWorkRecyclerView"
+                app:layout_constraintEnd_toEndOf="@id/finishWorkRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/finishWorkRecyclerView"
+                android:background="@drawable/calendar_background"
+                android:layout_marginTop="30dp"/>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/finishWorkRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/analEmotionButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

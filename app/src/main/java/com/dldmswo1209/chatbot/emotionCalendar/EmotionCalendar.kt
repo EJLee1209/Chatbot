@@ -165,15 +165,18 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
     }
     private fun initDB(){
         val userName = (activity as MainActivity).userName
+        val date = LocalDate.now().toString()
+        val yearMonthDay = date.split("-")
+        val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
         todoDB = Firebase.database.reference.child(userName).child(TodoFragment.TODO_DB_PATH).child(LocalDate.now().toString())
-        todayEmotionDB = Firebase.database.reference.child(userName).child("emotionRecord")
+        todayEmotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth)
 
         todoDB.addChildEventListener(listener)
         todayEmotionDB.addChildEventListener(todayEmotionListener)
     }
     private fun clickEvent(){
         val current = LocalDate.now()
-        Log.d("testt", current.toString())
+
         val formattedDate = current.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
         binding.todayTextView.text = formattedDate
         binding.addEmotionButton.setOnClickListener {
@@ -185,6 +188,9 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         binding.finishWorkRightArrowButton.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).todoFragment)
             (activity as MainActivity).todoButton.performClick()
+        }
+        binding.analEmotionButton.setOnClickListener {
+            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
         }
     }
 

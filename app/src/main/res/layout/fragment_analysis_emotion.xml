@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".emotionCalendar.EmotionCalendar">
+    tools:context=".emotionCalendar.EmotionCalendar"
+    android:background="@color/background_white">
 
     <ScrollView
         android:layout_width="0dp"
@@ -41,26 +42,178 @@
                 android:layout_marginTop="21dp"
                 android:layout_marginStart="19dp" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/EmotionPieChart"
-                android:layout_width="258dp"
-                android:layout_height="258dp"
+            <com.dldmswo1209.chatbot.RadarChartView
+                android:id="@+id/emotionRadarChart"
+                android:layout_width="0dp"
+                android:layout_height="450dp"
                 app:layout_constraintTop_toBottomOf="@id/analysisEmotionSubTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="34dp"/>
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/emotionRecyclerView"
+            <TextView
+                android:id="@+id/happyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="행복"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_nanumbarungothic"
+                app:layout_constraintTop_toBottomOf="@id/emotionRadarChart"
+                android:layout_marginStart="33dp"
+                app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/happyProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="545dp"
-                app:layout_constraintTop_toBottomOf="@id/EmotionPieChart"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/happyTitle"
+                app:layout_constraintTop_toBottomOf="@id/happyTitle"
+                app:layout_constraintEnd_toStartOf="@id/happyPercent"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                />
+            <TextView
+                android:id="@+id/happyPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="34dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginEnd="17dp"
-                android:background="@color/purple_200"/>
+                android:text="0%"
+                app:layout_constraintTop_toTopOf="@id/happyProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/happyProgressBar"
+                android:layout_marginEnd="24dp"/>
+
+
+            <TextView
+                android:id="@+id/pleasureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기쁨"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/happyProgressBar"
+                android:layout_marginStart="33dp"
+                app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/pleasureProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/pleasureTitle"
+                app:layout_constraintTop_toBottomOf="@id/pleasureTitle"
+                app:layout_constraintEnd_toStartOf="@id/pleasurePercent"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            <TextView
+                android:id="@+id/pleasurePercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="0%"
+                app:layout_constraintTop_toTopOf="@id/pleasureProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/pleasureProgressBar"
+                android:layout_marginEnd="24dp"/>
+
+            <TextView
+                android:id="@+id/sadTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="슬픔"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/pleasureProgressBar"
+                android:layout_marginStart="33dp"
+                app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/sadProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/sadTitle"
+                app:layout_constraintTop_toBottomOf="@id/sadTitle"
+                app:layout_constraintEnd_toStartOf="@id/sadPercent"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            <TextView
+                android:id="@+id/sadPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="0%"
+                app:layout_constraintTop_toTopOf="@id/sadProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/sadProgressBar"
+                android:layout_marginEnd="24dp"/>
+
+
+            <TextView
+                android:id="@+id/depressedTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="우울"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/sadProgressBar"
+                android:layout_marginStart="33dp"
+                app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/depressedProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/depressedTitle"
+                app:layout_constraintTop_toBottomOf="@id/depressedTitle"
+                app:layout_constraintEnd_toStartOf="@id/depressedPercent"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            <TextView
+                android:id="@+id/depressedPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="0%"
+                app:layout_constraintTop_toTopOf="@id/depressedProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/depressedProgressBar"
+                android:layout_marginEnd="24dp"/>
+
+
+            <TextView
+                android:id="@+id/angerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분노"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/depressedProgressBar"
+                android:layout_marginStart="33dp"
+                app:layout_constraintStart_toStartOf="parent" />
+            <ProgressBar
+                android:id="@+id/angerProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/angerTitle"
+                app:layout_constraintTop_toBottomOf="@id/angerTitle"
+                app:layout_constraintEnd_toStartOf="@id/angerPercent"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            <TextView
+                android:id="@+id/angerPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="0%"
+                app:layout_constraintTop_toTopOf="@id/angerProgressBar"
+                app:layout_constraintBottom_toBottomOf="@id/angerProgressBar"
+                android:layout_marginEnd="24dp"/>
+
+
             <TextView
                 android:id="@+id/bestDayTitle"
                 android:layout_width="wrap_content"
@@ -69,10 +222,10 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/emotionRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/angerProgressBar"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="23dp"/>
+                android:layout_marginTop="74dp"/>
 
             <ImageView
                 android:id="@+id/bestDayRightArrowButton"
@@ -82,11 +235,12 @@
                 app:layout_constraintBottom_toBottomOf="@id/bestDayTitle"
                 app:layout_constraintTop_toTopOf="@id/bestDayTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="22dp"/>
+                android:layout_marginEnd="22dp"
+                app:tint="#667080" />
             <FrameLayout
                 android:id="@+id/bestDayFrameLayout"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="176dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bestDayTitle"
@@ -94,81 +248,34 @@
                 android:layout_marginEnd="17dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/memo_border">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/bestDayEmotionChart"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="36dp"
-                        android:layout_marginTop="23dp"
-                        android:layout_marginBottom="23dp" />
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="46dp"
-                        android:layout_marginTop="28dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="행복 %"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="기쁨 %"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="슬픔 %"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="우울 %"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="분노 %"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
             </FrameLayout>
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/confirmButton"
-                android:layout_width="112dp"
+                android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:text="확인했어요"
-                android:textSize="14sp"
+                android:text="확인하기"
+                android:textSize="16sp"
+                android:textColor="#363636"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:gravity="center"
-                android:background="@drawable/rectangle_1"
+                android:background="@drawable/rectangle_add_button"
                 app:layout_constraintTop_toBottomOf="@id/bestDayFrameLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="13dp"/>
-            <TextView
+                android:layout_marginTop="13dp" />
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/testButton"
-                android:layout_width="112dp"
+                android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:text="자가진단"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textColor="#363636"
+                android:fontFamily="@font/font_nanumbarungothic"
                 android:gravity="center"
-                android:background="@drawable/rectangle_1"
+                android:background="@drawable/rectangle_add_button"
                 app:layout_constraintTop_toBottomOf="@id/confirmButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

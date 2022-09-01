@@ -91,7 +91,7 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
 
             if(position in firstDateIndex..lastDateIndex){
                 // 현재 월의 1일 ~ 마지막 일 만 처리
-                val db = Firebase.database.reference.child((context as MainActivity).userName).child("emotionRecord")
+                val db = Firebase.database.reference.child((context as MainActivity).userName).child("emotionRecord").child(yearMonth)
                 val listener = object: ChildEventListener{
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                         val emotion = snapshot.getValue(EmotionData::class.java)?:return

@@ -57,7 +57,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             time
         }
         currentDate = date
-        Log.d("testt",currentDate.toString())
+
         // 포맷 적용
         var datetime: String = SimpleDateFormat(
             mContext.getString(R.string.calendar_year_month_format),

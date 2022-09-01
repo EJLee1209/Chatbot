@@ -105,9 +105,12 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
         if(clickedDate == "" || clickedDate == LocalDate.now().toString()) {
             val current = LocalDate.now()
             val formattedDate = current.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
+            val date = LocalDate.now().toString()
+            val yearMonthDay = date.split("-")
+            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
 
             binding.todayDate.text = formattedDate
-            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(LocalDate.now().toString())
+            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(LocalDate.now().toString())
             binding.checkButton.isVisible = true
             binding.addEmotionTitle.text = "오늘의 기분 추가하기"
             binding.todayEmotionEditTextView.isEnabled = true
@@ -117,9 +120,12 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
 
         }else{
             val dateList = clickedDate.split("-")
+            val yearMonthDay = clickedDate.split("-")
+            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
+
             binding.todayDate.text = "${dateList[0]}년 ${dateList[1]}월 ${dateList[2]}일"
             (activity as MainActivity).date=""
-            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(clickedDate)
+            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(clickedDate)
             binding.checkButton.isVisible = false
             binding.addEmotionTitle.text = ""
             binding.todayEmotionEditTextView.isEnabled = false
