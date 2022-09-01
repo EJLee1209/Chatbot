@@ -39,6 +39,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             val emotionData = snapshot.getValue(EmotionData::class.java) ?: return
             // 해당 월의 모든 감정 데이터를 가져와서
 
+            // 리스트에 저장(긍정적인 감정이 제일 컸던 날을 찾기 위해서)
             allEmotionData.add(emotionData)
 
             // 감정 수치 누적
@@ -46,7 +47,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             pleasure += emotionData.pleasure
             sad += emotionData.sad
             depressed += emotionData.depressed
-            anger += emotionData.depressed
+            anger += emotionData.anger
             count++
 
             // 감정 각각의 평균을 구함
@@ -70,6 +71,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             binding.depressedPercent.text = "$depressedAvg%"
             binding.angerPercent.text = "$angerAvg%"
 
+            // 레이다차트 데이터 생성
             val dataList = ArrayList<RadarChartData>()
             dataList.add(RadarChartData(CharacteristicType.happy, happyAvg))
             dataList.add(RadarChartData(CharacteristicType.sad, sadAvg))
@@ -77,12 +79,8 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             dataList.add(RadarChartData(CharacteristicType.depressed, depressedAvg))
             dataList.add(RadarChartData(CharacteristicType.pleasure, pleasureAvg))
 
+            // 레이다차트에 데이터 전달
             binding.emotionRadarChart.setDataList(dataList)
-
-
-
-
-
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -113,8 +111,12 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         clickedEvent()
 
         Handler(Looper.getMainLooper()).postDelayed({
+            // 데이터베이스에서 불러오는 시간때문에 임의로 딜레이를 줘서 수행했다
+            // 좋은 방법은 아니지만, 일단 작동은 잘 된다.
             var max = 0
             var maxIdx = 0
+            if(allEmotionData.isEmpty()) return@postDelayed
+
             allEmotionData.forEachIndexed { index, data ->
                 val positiveEmotion = data.happy + data.pleasure
                 // 긍정적인 감정의 최댓값을 찾기 위함
@@ -124,6 +126,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
                 }
             }
 
+            // 바 차트 데이터 생성
             val dataList = ArrayList<BarChartData>()
             dataList.add(BarChartData(CharacteristicType.happy, allEmotionData[maxIdx].happy))
             dataList.add(BarChartData(CharacteristicType.pleasure, allEmotionData[maxIdx].pleasure))
@@ -131,13 +134,13 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             dataList.add(BarChartData(CharacteristicType.depressed, allEmotionData[maxIdx].depressed))
             dataList.add(BarChartData(CharacteristicType.anger, allEmotionData[maxIdx].anger))
 
+            // 바 차트에 데이터 전달
             binding.barChartView.setData(dataList,10,0,10)
+            // 제일 즐거운 날 날짜 표시
             val date = allEmotionData[maxIdx].date.split("-")
             binding.bestDayTitle.text = "${date[1]}월 ${date[2]}일이 제일 즐거운 날이었어요!"
 
         }, 1000)
-
-
     }
 
     fun clickedEvent(){
