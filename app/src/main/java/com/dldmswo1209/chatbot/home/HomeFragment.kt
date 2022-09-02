@@ -4,14 +4,14 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.view.marginRight
 import androidx.fragment.app.Fragment
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.chatRoom.ChatRoomActivity
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding : FragmentHomeBinding
@@ -28,6 +29,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        backgroundAnimation()
+        characterAnimation()
         checkUser()
         buttonClickEvent()
     }
@@ -69,6 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 })
             builder.show()
         }
+
     }
     private fun buttonClickEvent(){
         // 버튼 클릭 이벤트 작업
@@ -86,6 +90,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             startActivity(intent)
             binding.inputEditTextView.text.clear()
         }
+        binding.character.setOnClickListener {
+            // 캐릭터 터치시 애니메이션 실행
+            YoYo.with(Techniques.Bounce)
+                .duration(2000)
+                .playOn(binding.character)
+        }
+
+    }
+    private fun backgroundAnimation(){
+        // 배경 애니메이션
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
+        anim.fillAfter = true
+        binding.characterBackground.startAnimation(anim)
+
+    }
+    private fun characterAnimation(){
+        // 캐릭터 애니메이션
+        YoYo.with(Techniques.BounceInDown)
+            .duration(2000)
+            .playOn(binding.character)
     }
 
 }

@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/drawable/selector_emotion_menu.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/selector_emotion_menu_text.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/selector_radio_off.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/switch_thumb_circle.xml" value="0.1" />

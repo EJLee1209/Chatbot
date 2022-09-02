@@ -110,7 +110,7 @@ class RadarChartView(context: Context?, attrs: AttributeSet?) : View(context, at
 
         // 4. 전달된 데이터 표시
         path.close()
-        paint.color = ColorTemplate.colorWithAlpha(ColorTemplate.rgb("#7AB0B7"),50)
+        paint.color = ColorTemplate.colorWithAlpha(ColorTemplate.rgb("#7AB0B7"),90)
         paint.style = Paint.Style.FILL
         canvas.drawPath(path, paint)
 

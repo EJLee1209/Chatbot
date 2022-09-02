@@ -6,4 +6,9 @@
     <style name="weekendColor" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#E77C7C</item>
     </style>
+
+    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#EACB82</item>
+        <item name="colorControlNormal">#667080</item>
+    </style>
 </resources>

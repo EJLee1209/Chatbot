@@ -42,7 +42,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginTop="17dp"/>
+                android:layout_marginTop="14dp"/>
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -54,32 +54,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
                     <RadioButton
                         android:id="@+id/first1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/second1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/third1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fourth1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fifth1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/CustomRadioButton"/>
 
                 </RadioGroup>
 
@@ -124,32 +130,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
                     <RadioButton
                         android:id="@+id/first2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/second2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/third2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fourth2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fifth2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/CustomRadioButton"/>
 
                 </RadioGroup>
 
@@ -195,32 +207,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
                     <RadioButton
                         android:id="@+id/first3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/second3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/third3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fourth3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fifth3"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/CustomRadioButton"/>
 
                 </RadioGroup>
 
@@ -265,32 +283,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
                     <RadioButton
                         android:id="@+id/first4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/second4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/third4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fourth4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fifth4"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/CustomRadioButton"/>
 
                 </RadioGroup>
 
@@ -335,32 +359,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
                     <RadioButton
                         android:id="@+id/first5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/second5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/third5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fourth5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="36dp"
+                        android:theme="@style/CustomRadioButton"/>
                     <RadioButton
                         android:id="@+id/fifth5"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:theme="@style/CustomRadioButton"/>
 
                 </RadioGroup>
 
