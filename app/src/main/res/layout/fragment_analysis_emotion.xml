@@ -42,7 +42,7 @@
                 android:layout_marginTop="21dp"
                 android:layout_marginStart="19dp" />
 
-            <com.dldmswo1209.chatbot.RadarChartView
+            <com.dldmswo1209.chatbot.RadarAnimationChartView
                 android:id="@+id/emotionRadarChart"
                 android:layout_width="0dp"
                 android:layout_height="450dp"

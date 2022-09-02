@@ -73,12 +73,12 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             binding.angerPercent.text = "$angerAvg%"
 
             // 레이다차트 데이터 생성
-            val dataList = ArrayList<RadarChartData>()
-            dataList.add(RadarChartData(CharacteristicType.happy, happyAvg))
-            dataList.add(RadarChartData(CharacteristicType.sad, sadAvg))
-            dataList.add(RadarChartData(CharacteristicType.anger, angerAvg))
-            dataList.add(RadarChartData(CharacteristicType.depressed, depressedAvg))
-            dataList.add(RadarChartData(CharacteristicType.pleasure, pleasureAvg))
+            val dataList = ArrayList<RadarAnimationChartData>()
+            dataList.add(RadarAnimationChartData(CharacteristicType.happy, happyAvg))
+            dataList.add(RadarAnimationChartData(CharacteristicType.sad, sadAvg))
+            dataList.add(RadarAnimationChartData(CharacteristicType.anger, angerAvg))
+            dataList.add(RadarAnimationChartData(CharacteristicType.depressed, depressedAvg))
+            dataList.add(RadarAnimationChartData(CharacteristicType.pleasure, pleasureAvg))
 
             // 레이다차트에 데이터 전달
             binding.emotionRadarChart.setDataList(dataList)
