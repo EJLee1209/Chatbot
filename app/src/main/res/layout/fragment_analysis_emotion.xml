@@ -65,13 +65,14 @@
             <ProgressBar
                 android:id="@+id/happyProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 app:layout_constraintStart_toStartOf="@id/happyTitle"
                 app:layout_constraintTop_toBottomOf="@id/happyTitle"
                 app:layout_constraintEnd_toStartOf="@id/happyPercent"
                 android:layout_marginEnd="8dp"
+                android:progressDrawable="@drawable/positive_progress_bar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                />
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/happyPercent"
                 android:layout_width="wrap_content"
@@ -99,12 +100,14 @@
             <ProgressBar
                 android:id="@+id/pleasureProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 app:layout_constraintStart_toStartOf="@id/pleasureTitle"
                 app:layout_constraintTop_toBottomOf="@id/pleasureTitle"
                 app:layout_constraintEnd_toStartOf="@id/pleasurePercent"
                 android:layout_marginEnd="8dp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+                android:progressDrawable="@drawable/positive_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/pleasurePercent"
                 android:layout_width="wrap_content"
@@ -131,12 +134,14 @@
             <ProgressBar
                 android:id="@+id/sadProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 app:layout_constraintStart_toStartOf="@id/sadTitle"
                 app:layout_constraintTop_toBottomOf="@id/sadTitle"
                 app:layout_constraintEnd_toStartOf="@id/sadPercent"
                 android:layout_marginEnd="8dp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+                android:progressDrawable="@drawable/negative_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/sadPercent"
                 android:layout_width="wrap_content"
@@ -164,12 +169,14 @@
             <ProgressBar
                 android:id="@+id/depressedProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 app:layout_constraintStart_toStartOf="@id/depressedTitle"
                 app:layout_constraintTop_toBottomOf="@id/depressedTitle"
                 app:layout_constraintEnd_toStartOf="@id/depressedPercent"
                 android:layout_marginEnd="8dp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+                android:progressDrawable="@drawable/negative_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/depressedPercent"
                 android:layout_width="wrap_content"
@@ -197,12 +204,14 @@
             <ProgressBar
                 android:id="@+id/angerProgressBar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="3dp"
                 app:layout_constraintStart_toStartOf="@id/angerTitle"
                 app:layout_constraintTop_toBottomOf="@id/angerTitle"
                 app:layout_constraintEnd_toStartOf="@id/angerPercent"
                 android:layout_marginEnd="8dp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+                android:progressDrawable="@drawable/negative_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:id="@+id/angerPercent"
                 android:layout_width="wrap_content"
@@ -271,7 +280,7 @@
                 app:layout_constraintTop_toBottomOf="@id/bestDayFrameLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="13dp" />
+                android:layout_marginTop="53dp" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/testButton"
                 android:layout_width="200dp"

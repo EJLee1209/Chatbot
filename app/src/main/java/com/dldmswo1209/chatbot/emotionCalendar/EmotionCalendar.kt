@@ -2,7 +2,8 @@ package com.dldmswo1209.chatbot.emotionCalendar
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
@@ -32,6 +33,8 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
     private lateinit var binding: EmotionCalendarBinding
     private lateinit var todoDB: DatabaseReference
     private lateinit var todayEmotionDB: DatabaseReference
+    private var isConfirmAnalysis = false
+    private var isConfirmRecommend = false
     private val finishedWorkList = mutableListOf<TodoItem>()
     private val finishedWorkListAdapter = FinishedWorkListAdapter()
     private val customColors = mutableListOf(
@@ -41,9 +44,12 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         ColorTemplate.rgb("#3A5F62"),
         ColorTemplate.rgb("#F8FBF6")
     )
+    private val allEmotionData = mutableListOf<EmotionData>()
     private val todayEmotionListener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val emotionData = snapshot.getValue(EmotionData::class.java) ?: return
+            allEmotionData.add(emotionData)
+
             if(emotionData.date == LocalDate.now().toString()){
                 binding.apply {
                     todayEventTextView.text = emotionData.text
@@ -133,9 +139,16 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         initPieChart()
         initDB()
         clickEvent()
+        checkLastDay()
+        initCalendar()
+        checkRecentEmotion()
 
         binding.finishWorkRecyclerView.adapter = finishedWorkListAdapter
 
+
+
+    }
+    private fun initCalendar(){
         val calendarFragmentAdapter = CalendarFragmentAdapter(requireActivity())
         binding.emotionCalendar.apply {
             adapter = calendarFragmentAdapter
@@ -144,6 +157,48 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         }
 
     }
+    private fun checkLastDay(){
+        val calendar = Calendar.getInstance()
+        val date = LocalDate.now().toString()
+        val yearMonthDay = date.split("-")
+        val year = yearMonthDay[0].toInt()
+        val month = yearMonthDay[1].toInt()
+        val day = yearMonthDay[2].toInt()
+
+        calendar.set(year,month-1,1)
+        val lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+
+        if(day == lastDay && !isConfirmAnalysis){
+            // 오늘이 월의 마지막 날이라면 감정 분석 화면을 보여줌
+            // 앱 실행 시 최초 한번만 보여주기 위해서 isConfirm 이라는 변수를 사용
+            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
+            isConfirmAnalysis = true
+        }
+    }
+    private fun checkRecentEmotion(){
+        Handler(Looper.getMainLooper()).postDelayed({
+            // 데이터베이스에서 불러오는 시간때문에 임의로 딜레이를 줘서 수행했다
+            // 좋은 방법은 아니지만, 일단 작동은 잘 된다.
+
+            // 저장된 감정의 수가 14개 미만 이거나, 이미 권유를 받은 경우 return
+            if(allEmotionData.size < 14 || isConfirmRecommend) return@postDelayed
+            val startIdx = allEmotionData.size - 14
+
+            // 최근 14일의 감정데이터를 가져와서 긍정적인 감정과 부정적인 감정의 합을 비교한다
+            for(i in startIdx until allEmotionData.size){
+                val positiveEmotion = allEmotionData[i].pleasure + allEmotionData[i].happy
+                val negativeEmotion = allEmotionData[i].sad + allEmotionData[i].depressed + allEmotionData[i].anger
+                if(positiveEmotion > negativeEmotion) return@postDelayed // 긍정적인 감정이 더 큰 날이 있었으면 return
+            }
+            // 여기까지 수행이 된다면 최근 14일간 부정적인 감정이 지속 되었다는 것
+            // 자가진단을 권유하는 화면을 보여준다.
+            // 권유를 계속하면 앱 사용에 문제가 있으니 한번만 보여주도록 한다. 앱을 껐다켜면 다시 권유한다.
+            (activity as MainActivity).replaceFragment((activity as MainActivity).recommendTestFragment)
+            isConfirmRecommend = true
+
+        }, 1000)
+    }
+
     private fun initPieChart(){
         binding.apply {
             positiveEmotionPieChart.setUsePercentValues(false)

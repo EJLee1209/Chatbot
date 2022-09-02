@@ -31,7 +31,8 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
     private var sadAvg = 0
     private var depressedAvg = 0
     private var angerAvg = 0
-
+    private var max = 0
+    private var maxIdx = 0
     private val allEmotionData = mutableListOf<EmotionData>()
 
     private val listener= object: ChildEventListener{
@@ -101,9 +102,12 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         binding = FragmentAnalysisEmotionBinding.bind(view)
         allEmotionData.clear()
 
+
         val date = LocalDate.now().toString()
         val yearMonthDay = date.split("-")
         val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
+
+        binding.analysisEmotionSubTitle.text = "${yearMonthDay[1].toInt()}월 동안 이런 감정을 느꼈어요!"
 
         db = Firebase.database.reference.child((context as MainActivity).userName).child("emotionRecord").child(yearMonth)
         db.addChildEventListener(listener)
@@ -113,8 +117,6 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         Handler(Looper.getMainLooper()).postDelayed({
             // 데이터베이스에서 불러오는 시간때문에 임의로 딜레이를 줘서 수행했다
             // 좋은 방법은 아니지만, 일단 작동은 잘 된다.
-            var max = 0
-            var maxIdx = 0
             if(allEmotionData.isEmpty()) return@postDelayed
 
             allEmotionData.forEachIndexed { index, data ->
@@ -138,6 +140,7 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
             binding.barChartView.setData(dataList,10,0,10)
             // 제일 즐거운 날 날짜 표시
             val date = allEmotionData[maxIdx].date.split("-")
+
             binding.bestDayTitle.text = "${date[1]}월 ${date[2]}일이 제일 즐거운 날이었어요!"
 
         }, 1000)
@@ -149,6 +152,10 @@ class AnalysisEmotionFragment : Fragment(R.layout.fragment_analysis_emotion) {
         }
         binding.testButton.setOnClickListener {
             (activity as MainActivity).replaceFragment((activity as MainActivity).recommendTestFragment)
+        }
+        binding.bestDayRightArrowButton.setOnClickListener {
+            (activity as MainActivity).date = allEmotionData[maxIdx].date
+            (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
         }
     }
 
