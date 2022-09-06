@@ -387,13 +387,13 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/analEmotionButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="168dp"
+                android:layout_height="40dp"
                 android:text="감정분석 하러가기"
-                app:layout_constraintStart_toStartOf="@id/finishWorkRecyclerView"
-                app:layout_constraintEnd_toEndOf="@id/finishWorkRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/finishWorkRecyclerView"
-                android:background="@drawable/calendar_background"
+                android:background="@drawable/rectangle_add_button"
                 android:layout_marginTop="30dp"/>
 
             <View

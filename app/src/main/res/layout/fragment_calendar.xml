@@ -119,7 +119,8 @@
                 app:layout_constrainedHeight="true"
                 tools:listitem="@layout/calendar_item"
                 android:paddingStart="15dp"
-                android:paddingTop="6dp" />
+                android:paddingTop="5dp"
+                android:overScrollMode="never"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

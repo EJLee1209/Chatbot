@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
@@ -20,7 +24,7 @@ import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-    private val homeFragment = HomeFragment()
+    lateinit var homeFragment : HomeFragment
     val calendarFragment = EmotionCalendar()
     lateinit var todoFragment: TodoFragment
     lateinit var depressionTestFragment: DepressionTestFragment
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         analysisEmotionFragment = AnalysisEmotionFragment()
         addTodoFragment = AddTodoFragment()
         todoFragment = TodoFragment()
+        homeFragment = HomeFragment()
 
         replaceFragment(homeFragment)
 
@@ -83,6 +88,15 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
        
+    }
+    fun toast(text: String){
+        val layoutInflater = LayoutInflater.from(this).inflate(R.layout.view_holder_toast,null)
+        val textView = layoutInflater.findViewById<TextView>(R.id.textViewToast)
+        textView.text = text
+
+        val toast = Toast(this)
+        toast.view = layoutInflater
+        toast.show()
     }
 
     override fun onResume() {

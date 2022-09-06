@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.FragmentRecommendTestBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class RecommendTestFragment : Fragment(R.layout.fragment_recommend_test) {
     private lateinit var binding: FragmentRecommendTestBinding
@@ -22,7 +23,7 @@ class RecommendTestFragment : Fragment(R.layout.fragment_recommend_test) {
             (activity as MainActivity).replaceFragment((activity as MainActivity).depressionTestFragment)
         }
         binding.backButton.setOnClickListener {
-            (activity as MainActivity).replaceFragment((activity as MainActivity).calendarFragment)
+            (activity as MainActivity).HomeButton.performClick() // 홈버튼 강제 클릭 -> 홈 화면으로 이동
         }
     }
 }

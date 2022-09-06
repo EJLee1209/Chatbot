@@ -12,6 +12,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.CalendarAdapter
@@ -73,6 +74,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
         binding.calendarView.adapter = calendarAdapter
         binding.calendarView.layoutManager = gridLayoutManager
+        binding.calendarView.isNestedScrollingEnabled = false
+
 
 
     }

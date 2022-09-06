@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.databinding.FragmentHelpBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class HelpFragment : Fragment(R.layout.fragment_help) {
     private lateinit var binding : FragmentHelpBinding
@@ -17,11 +18,11 @@ class HelpFragment : Fragment(R.layout.fragment_help) {
 
         binding.helpMeButton.setOnClickListener {
             // 도움요청
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://krcpa.or.kr/user/sub02_3.asp"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://lifeline.or.kr"))
             startActivity(intent)
         }
         binding.backButton.setOnClickListener {
-            (activity as MainActivity).replaceFragment((activity as MainActivity).calendarFragment)
+            (activity as MainActivity).HomeButton.performClick()
         }
     }
 }

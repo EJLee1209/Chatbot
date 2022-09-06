@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/drawable/test.xml" value="0.12975921630859377" />
         <entry key="app/src/main/res/drawable/test_border.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/text_bubble.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/toast_background.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/todo_rectangle.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/todo_white_border.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/todo_white_border_item.xml" value="0.1415" />
@@ -82,6 +83,7 @@
         <entry key="app/src/main/res/layout/recommend_item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_item_detail.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_work_item.xml" value="0.26830868447295125" />
+        <entry key="app/src/main/res/layout/view_holder_toast.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/work_item.xml" value="0.23425662275673692" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24540557861328127" />
       </map>

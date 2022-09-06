@@ -62,7 +62,7 @@ class RadarAnimationChartView(context: Context?, attrs: AttributeSet?) : View(co
         isAntiAlias = true
     }
     private val textPaint = TextPaint().apply {
-        textSize = 28f
+        textSize = 40f
         textAlign = Paint.Align.CENTER
     }
     private var path = Path()
@@ -94,17 +94,6 @@ class RadarAnimationChartView(context: Context?, attrs: AttributeSet?) : View(co
                 startY = stopPoint.y
             }
 
-            // 각 단계별 기준값 표시
-            if (i < step) {
-                val strValue = "${100 - 20 * i}"
-                textPaint.textAlign = Paint.Align.LEFT
-                canvas.drawText(
-                    strValue,
-                    startX + 10,
-                    textPaint.fontMetrics.getBaseLine(startY),
-                    textPaint
-                )
-            }
         }
 
         // 3. 각 꼭지점 부근에 각 특성 문자열 표시하기
