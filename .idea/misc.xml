@@ -14,13 +14,24 @@
         <entry key="app/src/main/res/drawable/calendar_background.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/chat_bubble_bot.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.1415" />
+        <entry key="app/src/main/res/drawable/custom_progress_bar.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/custom_seekbar_progress.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/emotion_background_circle.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/emotion_background_circle_bad.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/emotion_menu_none.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/emotion_menu_selected.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/input_text_background.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/memo_border.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/negative_progress_bar.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/rectangle_4.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/select_rectangle.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/selector_emotion_menu.xml" value="0.1305" />
+        <entry key="app/src/main/res/drawable/selector_emotion_menu_text.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/selector_radio_off.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/switch_thumb_circle.xml" value="0.1" />
@@ -31,6 +42,7 @@
         <entry key="app/src/main/res/drawable/test.xml" value="0.12975921630859377" />
         <entry key="app/src/main/res/drawable/test_border.xml" value="0.1265" />
         <entry key="app/src/main/res/drawable/text_bubble.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/toast_background.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/todo_rectangle.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/todo_white_border.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/todo_white_border_item.xml" value="0.1415" />
@@ -47,31 +59,32 @@
         <entry key="app/src/main/res/layout/activity_diagnosis2.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/activity_emotioncal.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_emtional.xml" value="0.15968586387434555" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24709235297309023" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23743286132812502" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_today_work.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_todayemotion_add.xml" value="0.3536458333333333" />
-        <entry key="app/src/main/res/layout/calendar_item.xml" value="0.2749827067057292" />
+        <entry key="app/src/main/res/layout/calendar_item.xml" value="0.2167205810546875" />
         <entry key="app/src/main/res/layout/chat_item_bot.xml" value="0.2598868107450181" />
         <entry key="app/src/main/res/layout/chat_item_bot_recommend.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/chat_item_user.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/dialog_input_name.xml" value="0.23034973144531257" />
-        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.16159973144531253" />
+        <entry key="app/src/main/res/layout/emotion_calendar.xml" value="0.25282440185546873" />
         <entry key="app/src/main/res/layout/finish_item.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.25785980224609384" />
+        <entry key="app/src/main/res/layout/fragment_add_emotion.xml" value="0.22177276611328134" />
         <entry key="app/src/main/res/layout/fragment_add_todo.xml" value="0.2528447469075521" />
         <entry key="app/src/main/res/layout/fragment_add_todo_activity.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/fragment_analysis_emotion.xml" value="0.19005635579427083" />
+        <entry key="app/src/main/res/layout/fragment_analysis_emotion.xml" value="0.14405975341796878" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.28351073088469325" />
         <entry key="app/src/main/res/layout/fragment_depression_test.xml" value="0.22865804036458331" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.24918212890625002" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22893588301064313" />
-        <entry key="app/src/main/res/layout/fragment_recommend_test.xml" value="0.18889516194661454" />
+        <entry key="app/src/main/res/layout/fragment_recommend_test.xml" value="0.25556386311848955" />
         <entry key="app/src/main/res/layout/fragment_todo.xml" value="0.2220373844754869" />
         <entry key="app/src/main/res/layout/recommend_item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_item_detail.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/recommend_work_item.xml" value="0.26830868447295125" />
-        <entry key="app/src/main/res/layout/work_item.xml" value="0.27103183027626815" />
+        <entry key="app/src/main/res/layout/view_holder_toast.xml" value="0.30885416666666665" />
+        <entry key="app/src/main/res/layout/work_item.xml" value="0.23425662275673692" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24540557861328127" />
       </map>
     </option>

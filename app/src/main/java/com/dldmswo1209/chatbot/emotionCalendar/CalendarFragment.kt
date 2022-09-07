@@ -12,6 +12,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.CalendarAdapter
@@ -57,7 +58,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             time
         }
         currentDate = date
-        Log.d("testt",currentDate.toString())
+
         // 포맷 적용
         var datetime: String = SimpleDateFormat(
             mContext.getString(R.string.calendar_year_month_format),
@@ -67,11 +68,14 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         val calendarLayout = view.findViewById<LinearLayoutCompat>(R.id.calendarLayout)
         val gridLayoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
         val calendarAdapter = CalendarAdapter(requireContext(), calendarLayout, currentDate) {
-            (activity as MainActivity).replaceFragment((activity as MainActivity).analysisEmotionFragment)
+            (activity as MainActivity).date = it
+            (activity as MainActivity).replaceFragment((activity as MainActivity).addEmotionFragment)
         }
 
         binding.calendarView.adapter = calendarAdapter
         binding.calendarView.layoutManager = gridLayoutManager
+        binding.calendarView.isNestedScrollingEnabled = false
+
 
 
     }

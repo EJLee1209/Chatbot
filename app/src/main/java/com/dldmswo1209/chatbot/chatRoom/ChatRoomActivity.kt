@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dldmswo1209.chatbot.MainActivity
 import com.dldmswo1209.chatbot.R
 import com.dldmswo1209.chatbot.adapter.ChatListAdapter
 import com.dldmswo1209.chatbot.databinding.ActivityChatRoomBinding
@@ -101,7 +104,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 finish()
             } else {
                 // false : 아니 를 누른 경우
-                Toast.makeText(this, "ㅠㅠ",Toast.LENGTH_SHORT).show()
+
             }
         }
         // 리사이클러뷰
@@ -142,15 +145,20 @@ class ChatRoomActivity : AppCompatActivity() {
         // 인터페이스로 만든 레트로핏 api 요청 받는 것 변수로 등록
         mRetrofitAPI = mRetrofit.create(RetrofitAPI::class.java)
     }
-    private fun ServerConnectErrorToast(){
-        Toast.makeText(this, "서버와의 연결상태가 좋지 않습니다.", Toast.LENGTH_SHORT).show()
+    private fun ServerConnectErrorToast(text: String){
+        val layoutInflater = LayoutInflater.from(this).inflate(R.layout.view_holder_toast,null)
+        val textView = layoutInflater.findViewById<TextView>(R.id.textViewToast)
+        textView.text = text
+
+        val toast = Toast(this)
+        toast.view = layoutInflater
+        toast.show()
     }
 
     private val mRetrofitCallback = (object : retrofit2.Callback<JsonObject>{
         override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
             // 서버에서 데이터 요청 성공시
             val result = response.body()
-            Log.d("testt", "결과는 ${result}")
 
             var gson = Gson()
             val dataParsed1 = gson.fromJson(result, RetrofitDTO.ChatItem::class.java)
@@ -162,8 +170,7 @@ class ChatRoomActivity : AppCompatActivity() {
         override fun onFailure(call: Call<JsonObject>, t: Throwable) {
             // 서버 요청 실패
             t.printStackTrace()
-            Log.d("testt", "에러입니다. ${t.message}")
-            ServerConnectErrorToast()
+            ServerConnectErrorToast("서버와의 연결상태가 좋지 않습니다.")
         }
     })
     private fun callTodoList(chatText: String){

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".depressionTest.RecommendTestFragment"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="@color/background_white">
 
     <TextView
         android:id="@+id/userNameTextView"
@@ -47,18 +48,25 @@
         android:layout_height="48dp"
         android:text="자가진단 하기"
         android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:gravity="center"
         android:background="@drawable/rectangle_4"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="47dp"
-        android:layout_marginBottom="11dp"/>
+        android:layout_marginBottom="11dp"
+        android:backgroundTint="#7AB0B7"/>
     <TextView
         android:id="@+id/backButton"
         android:layout_width="139dp"
         android:layout_height="48dp"
         android:text="뒤로가기"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#667080"
         android:gravity="center"
         android:background="@drawable/rectangle_1"
+        android:backgroundTint="#EEF1F4"
         android:layout_gravity="center_horizontal"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

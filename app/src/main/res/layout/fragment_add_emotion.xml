@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".emotionCalendar.EmotionCalendar">
+    tools:context=".emotionCalendar.EmotionCalendar"
+    android:background="@color/background_white">
 
     <ScrollView
         android:layout_width="0dp"
@@ -76,218 +77,146 @@
                 android:padding="12dp"
                 android:textSize="15sp"/>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/todayEmotionSubTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/emotionLinearLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/todayEmotionEditTextView"
-                android:gravity="center"
-                android:layout_marginTop="21dp">
+                app:layout_constraintStart_toStartOf="@id/todayEmotionEditTextView"
+                android:layout_marginTop="24dp"
+                android:text="오늘의 감정 기록하기"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/calendar_background" />
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="행복"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="5dp"/>
-                    <SeekBar
-                        android:id="@+id/happySeekBar"
-                        android:layout_width="181dp"
-                        android:layout_height="wrap_content"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <TextView
-                    android:id="@+id/happyPercentTextView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:layout_marginStart="8dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <com.dldmswo1209.chatbot.RadarChartView
+                android:id="@+id/emotionRadarChart"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/emotionLinearLayout2"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="28dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emotionLinearLayout"
-                android:gravity="center"
-                android:layout_marginTop="25dp">
-
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/calendar_background" />
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기쁨"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="5dp"/>
-                    <SeekBar
-                        android:id="@+id/pleasureSeekBar"
-                        android:layout_width="181dp"
-                        android:layout_height="wrap_content"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <TextView
-                    android:id="@+id/pleasurePercentTextView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:layout_marginStart="8dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/emotionLinearLayout3"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emotionLinearLayout2"
-                android:gravity="center"
-                android:layout_marginTop="25dp">
+                app:layout_constraintTop_toBottomOf="@id/todayEmotionSubTitle" />
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/calendar_background" />
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="슬픔"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="5dp"/>
-                    <SeekBar
-                        android:id="@+id/sadSeekBar"
-                        android:layout_width="181dp"
-                        android:layout_height="wrap_content"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <TextView
-                    android:id="@+id/sadPercentTextView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:layout_marginStart="8dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/emotionLinearLayout4"
+            <TextView
+                android:id="@+id/todayEmotionThirdTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/emotionRadarChart"
+                app:layout_constraintStart_toStartOf="@id/todayEmotionEditTextView"
+                android:text="기록할 감정"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+            <RadioGroup
+                android:id="@+id/emotionRadioGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emotionLinearLayout3"
-                android:gravity="center"
-                android:layout_marginTop="25dp">
-
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/calendar_background" />
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="우울"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="5dp"/>
-                    <SeekBar
-                        android:id="@+id/depressedSeekBar"
-                        android:layout_width="181dp"
-                        android:layout_height="wrap_content"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <TextView
-                    android:id="@+id/depressedPercentTextView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:layout_marginStart="8dp"/>
-
-
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/emotionLinearLayout5"
+                app:layout_constraintTop_toBottomOf="@id/todayEmotionThirdTitle"
+                android:orientation="horizontal"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center">
+                <RadioButton
+                    android:id="@+id/pleasureButton"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/selector_emotion_menu"
+                    android:text="기쁨"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/font_nanumbarungothic"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textColor="@drawable/selector_emotion_menu_text"
+                    android:layout_marginEnd="9dp"/>
+                <RadioButton
+                    android:id="@+id/happyButton"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/selector_emotion_menu"
+                    android:text="행복"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/font_nanumbarungothic"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textColor="@drawable/selector_emotion_menu_text"
+                    android:layout_marginEnd="9dp"/>
+                <RadioButton
+                    android:id="@+id/sadButton"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/selector_emotion_menu"
+                    android:text="슬픔"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/font_nanumbarungothic"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textColor="@drawable/selector_emotion_menu_text"
+                    android:layout_marginEnd="9dp"/>
+                <RadioButton
+                    android:id="@+id/depressedButton"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/selector_emotion_menu"
+                    android:text="우울"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/font_nanumbarungothic"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textColor="@drawable/selector_emotion_menu_text"
+                    android:layout_marginEnd="9dp"/>
+                <RadioButton
+                    android:id="@+id/angerButton"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/selector_emotion_menu"
+                    android:text="분노"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/font_nanumbarungothic"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textColor="@drawable/selector_emotion_menu_text" />
+            </RadioGroup>
+            <SeekBar
+                android:id="@+id/emotionSeekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/emotionValueTextView"
+                app:layout_constraintTop_toBottomOf="@id/emotionRadioGroup"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="24dp"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/custom_seekbar_progress"
+                android:splitTrack="false"/>
+
+            <TextView
+                android:id="@+id/emotionValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_nanumbarungothic"
+                android:textColor="#667080"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emotionLinearLayout4"
-                android:gravity="center"
-                android:layout_marginTop="25dp">
-
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:src="@drawable/calendar_background" />
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="분노"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="5dp"/>
-                    <SeekBar
-                        android:id="@+id/angerSeekBar"
-                        android:layout_width="181dp"
-                        android:layout_height="wrap_content"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <TextView
-                    android:id="@+id/angerPercentTextView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:layout_marginStart="8dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
+                app:layout_constraintTop_toTopOf="@id/emotionSeekBar"
+                app:layout_constraintBottom_toBottomOf="@id/emotionSeekBar"
+                android:layout_marginEnd="17dp"
+                android:layout_marginStart="8dp"/>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/emotionLinearLayout5"
+                app:layout_constraintTop_toBottomOf="@id/emotionValueTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

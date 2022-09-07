@@ -3,6 +3,11 @@ package com.dldmswo1209.chatbot
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.dldmswo1209.chatbot.databinding.ActivityMainBinding
@@ -15,10 +20,11 @@ import com.dldmswo1209.chatbot.emotionCalendar.EmotionCalendar
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-    private val homeFragment = HomeFragment()
+    lateinit var homeFragment : HomeFragment
     val calendarFragment = EmotionCalendar()
     lateinit var todoFragment: TodoFragment
     lateinit var depressionTestFragment: DepressionTestFragment
@@ -27,12 +33,17 @@ class MainActivity : AppCompatActivity() {
     lateinit var addEmotionFragment: AddEmotionFragment
     lateinit var analysisEmotionFragment: AnalysisEmotionFragment
     lateinit var addTodoFragment: AddTodoFragment
+    lateinit var userName : String
+    var date = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
+        userName = sharedPreferences.getString("name",null).toString()
 
         depressionTestFragment = DepressionTestFragment()
         helpFragment = HelpFragment()
@@ -41,11 +52,13 @@ class MainActivity : AppCompatActivity() {
         analysisEmotionFragment = AnalysisEmotionFragment()
         addTodoFragment = AddTodoFragment()
         todoFragment = TodoFragment()
+        homeFragment = HomeFragment()
 
         replaceFragment(homeFragment)
 
         buttonClickEvent()
 
+        Log.d("testt", LocalDate.now().toString())
 
     }
     private fun buttonClickEvent(){
@@ -75,6 +88,15 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
        
+    }
+    fun toast(text: String){
+        val layoutInflater = LayoutInflater.from(this).inflate(R.layout.view_holder_toast,null)
+        val textView = layoutInflater.findViewById<TextView>(R.id.textViewToast)
+        textView.text = text
+
+        val toast = Toast(this)
+        toast.view = layoutInflater
+        toast.show()
     }
 
     override fun onResume() {

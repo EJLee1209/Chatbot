@@ -104,161 +104,198 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/todayEmotionLinearLayout"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/todayEmotionRightArrowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/todayEmotionTitle"
+                app:layout_constraintBottom_toBottomOf="@id/todayEmotionTitle"
+                android:src="@drawable/right_arrow"
+                app:layout_constraintStart_toEndOf="@id/todayEmotionTitle"
+                android:layout_marginStart="61dp"/>
+
+
+            <FrameLayout
+                android:id="@+id/todayEmotionFrameLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/todayEmotionTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="13dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp"
-                android:gravity="center">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="160dp"
-                    android:layout_height="110dp"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/todayEmotionLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/todayEmotionTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:gravity="center">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="160dp"
+                        android:layout_height="110dp"
+                        android:background="@drawable/calendar_background"
+                        android:layout_marginEnd="12dp">
+                        <TextView
+                            android:id="@+id/positiveEmotionTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="긍정적인 감정"
+                            android:textSize="14sp"
+                            android:textColor="#363636"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginStart="9dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="행복, 기쁨 등"
+                            android:textSize="10sp"
+                            android:textColor="#979797"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toEndOf="@id/positiveEmotionTitle"
+                            app:layout_constraintTop_toTopOf="@id/positiveEmotionTitle"
+                            app:layout_constraintBottom_toBottomOf="@id/positiveEmotionTitle"
+                            android:layout_marginStart="3dp"/>
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/positiveEmotionPieChart"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp" />
+                        <TextView
+                            android:id="@+id/happyPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="행복 80%"
+                            android:textSize="10sp"
+                            android:textColor="#979797"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
+                            app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="11dp"/>
+                        <TextView
+                            android:id="@+id/pleasurePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="기쁨 20%"
+                            android:textSize="10sp"
+                            android:textColor="#979797"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
+                            app:layout_constraintTop_toBottomOf="@id/happyPercent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="160dp"
+                        android:layout_height="110dp"
+                        android:background="@drawable/calendar_background">
+
+                        <TextView
+                            android:id="@+id/negativeEmotionTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="부정적인 감정"
+                            android:textSize="14sp"
+                            android:textColor="#363636"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginStart="9dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="슬픔,우울,분노 등"
+                            android:textSize="10sp"
+                            android:textColor="#979797"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toEndOf="@id/negativeEmotionTitle"
+                            app:layout_constraintTop_toTopOf="@id/negativeEmotionTitle"
+                            app:layout_constraintBottom_toBottomOf="@id/negativeEmotionTitle"
+                            android:layout_marginStart="3dp"/>
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/negativeEmotionPieChart"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"/>
+                        <TextView
+                            android:id="@+id/sadPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="슬픔 80%"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            android:textColor="#979797"
+                            app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                            app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="11dp"/>
+                        <TextView
+                            android:id="@+id/depressedPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="우울 20%"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            android:textColor="#979797"
+                            app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                            app:layout_constraintTop_toBottomOf="@id/sadPercent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"/>
+                        <TextView
+                            android:id="@+id/angerPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분노 20%"
+                            android:textSize="10sp"
+                            android:textColor="#979797"
+                            android:fontFamily="@font/font_nanumbarungothic"
+                            app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
+                            app:layout_constraintTop_toBottomOf="@id/depressedPercent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/panelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="오늘의 감정을 기록해주세요"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#667080"
+                    android:fontFamily="@font/font_nanumbarungothic"
                     android:background="@drawable/calendar_background"
-                    android:layout_marginEnd="12dp">
-                    <TextView
-                        android:id="@+id/positiveEmotionTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="긍정적인 감정"
-                        android:textSize="14sp"
-                        android:textColor="#363636"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginStart="9dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="행복, 기쁨 등"
-                        android:textSize="10sp"
-                        android:textColor="#979797"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toEndOf="@id/positiveEmotionTitle"
-                        app:layout_constraintTop_toTopOf="@id/positiveEmotionTitle"
-                        app:layout_constraintBottom_toBottomOf="@id/positiveEmotionTitle"
-                        android:layout_marginStart="3dp"/>
-                    
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/positiveEmotionPieChart"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"/>
-                    <TextView
-                        android:id="@+id/happyPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="행복 80%"
-                        android:textSize="10sp"
-                        android:textColor="#979797"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
-                        app:layout_constraintTop_toBottomOf="@id/positiveEmotionTitle"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="11dp"/>
-                    <TextView
-                        android:id="@+id/pleasurePercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기쁨 20%"
-                        android:textSize="10sp"
-                        android:textColor="#979797"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toEndOf="@id/positiveEmotionPieChart"
-                        app:layout_constraintTop_toBottomOf="@id/happyPercent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="160dp"
-                    android:layout_height="110dp"
-                    android:background="@drawable/calendar_background">
-
-                    <TextView
-                        android:id="@+id/negativeEmotionTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="부정적인 감정"
-                        android:textSize="14sp"
-                        android:textColor="#363636"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginStart="9dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="행복, 기쁨 등"
-                        android:textSize="10sp"
-                        android:textColor="#979797"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toEndOf="@id/negativeEmotionTitle"
-                        app:layout_constraintTop_toTopOf="@id/negativeEmotionTitle"
-                        app:layout_constraintBottom_toBottomOf="@id/negativeEmotionTitle"
-                        android:layout_marginStart="3dp"/>
-
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/negativeEmotionPieChart"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"/>
-                    <TextView
-                        android:id="@+id/sadPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="슬픔 80%"
-                        android:textSize="10sp"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        android:textColor="#979797"
-                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
-                        app:layout_constraintTop_toBottomOf="@id/negativeEmotionTitle"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="11dp"/>
-                    <TextView
-                        android:id="@+id/depressedPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="우울 20%"
-                        android:textSize="10sp"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        android:textColor="#979797"
-                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
-                        app:layout_constraintTop_toBottomOf="@id/sadPercent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"/>
-                    <TextView
-                        android:id="@+id/angerPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="분노 20%"
-                        android:textSize="10sp"
-                        android:textColor="#979797"
-                        android:fontFamily="@font/font_nanumbarungothic"
-                        app:layout_constraintStart_toEndOf="@id/negativeEmotionPieChart"
-                        app:layout_constraintTop_toBottomOf="@id/depressedPercent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp" />
 
 
+            </FrameLayout>
 
 
             <TextView
@@ -272,7 +309,7 @@
                 android:gravity="center"
                 android:background="@drawable/rectangle_add_button"
                 android:layout_gravity="center_horizontal"
-                app:layout_constraintTop_toBottomOf="@id/todayEmotionLinearLayout"
+                app:layout_constraintTop_toBottomOf="@id/todayEmotionFrameLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="13dp"/>
@@ -297,6 +334,7 @@
                 android:layout_width="0dp"
                 android:layout_height="190dp"
                 android:textSize="12sp"
+                android:text="오늘은 무슨 일이 있었나요?"
                 android:textColor="#000000"
                 android:fontFamily="@font/font_nanumbarungothic"
                 app:layout_constraintStart_toStartOf="@id/calendarFrameLayout"
@@ -331,13 +369,14 @@
                 android:src="@drawable/right_arrow"
                 app:layout_constraintTop_toTopOf="@id/finishWorkTitle"
                 app:layout_constraintBottom_toBottomOf="@id/finishWorkTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintStart_toEndOf="@id/finishWorkTitle"
+                android:layout_marginStart="200dp"/>
             
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/finishWorkRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="130dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintTop_toBottomOf="@id/finishWorkTitle"
                 app:layout_constraintStart_toStartOf="@id/calendarFrameLayout"
                 app:layout_constraintEnd_toEndOf="@id/calendarFrameLayout"
@@ -346,10 +385,21 @@
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/analEmotionButton"
+                android:layout_width="168dp"
+                android:layout_height="40dp"
+                android:text="감정분석 하러가기"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/finishWorkRecyclerView"
+                android:background="@drawable/rectangle_add_button"
+                android:layout_marginTop="30dp"/>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/finishWorkRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/analEmotionButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

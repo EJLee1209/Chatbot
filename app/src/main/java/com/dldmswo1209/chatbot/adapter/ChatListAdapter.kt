@@ -24,6 +24,7 @@ class ChatListAdapter(val onItemClicked: (Boolean) -> Unit) : ListAdapter<ChatIt
     }
     inner class BotViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val chatTextView = view.findViewById<TextView>(R.id.botChatTextView)
+
         fun bind(chatItem: ChatItem){
             chatTextView.text = chatItem.chatText
         }
