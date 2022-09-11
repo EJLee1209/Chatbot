@@ -144,9 +144,6 @@ class EmotionCalendar : Fragment(R.layout.emotion_calendar) {
         checkRecentEmotion()
 
         binding.finishWorkRecyclerView.adapter = finishedWorkListAdapter
-
-
-
     }
     private fun initCalendar(){
         val calendarFragmentAdapter = CalendarFragmentAdapter(requireActivity())

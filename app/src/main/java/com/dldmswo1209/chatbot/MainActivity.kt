@@ -20,6 +20,7 @@ import com.dldmswo1209.chatbot.emotionCalendar.EmotionCalendar
 import com.dldmswo1209.chatbot.home.HomeFragment
 import com.dldmswo1209.chatbot.todayTodo.AddTodoFragment
 import com.dldmswo1209.chatbot.todayTodo.TodoFragment
+import com.dldmswo1209.chatbot.todayTodo.TodoItem
 import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var analysisEmotionFragment: AnalysisEmotionFragment
     lateinit var addTodoFragment: AddTodoFragment
     lateinit var userName : String
+
     var date = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,17 +103,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val sharedPreferences = getSharedPreferences("question", Context.MODE_PRIVATE)
-        val yesOrNo = sharedPreferences.getBoolean("yesOrNo", false)
-
-        if(yesOrNo){
-            binding.calendarButton.performClick()
-            val editor = sharedPreferences.edit()
-            editor.apply {
-                putBoolean("yesOrNo", false)
-                apply()
-            }
-        }
     }
 
 }

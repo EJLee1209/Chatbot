@@ -26,6 +26,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.emotion_calendar.*
 import kotlinx.android.synthetic.main.fragment_add_emotion.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -41,106 +45,13 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
     private var depressed = 0
     private var anger = 0
 
-    private val listener = object: ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val emotionData = snapshot.getValue(EmotionData::class.java)
-
-            if(emotionData == null){
-                binding.todayEmotionEditTextView.text.clear()
-                happy = 0
-                pleasure = 0
-                sad = 0
-                depressed = 0
-                anger = 0
-
-                emotionSeekBar.progress = pleasure
-
-                val dataList = ArrayList<RadarChartData>()
-                dataList.add(RadarChartData(CharacteristicType.happy, happy))
-                dataList.add(RadarChartData(CharacteristicType.sad, sad))
-                dataList.add(RadarChartData(CharacteristicType.anger, anger))
-                dataList.add(RadarChartData(CharacteristicType.depressed, depressed))
-                dataList.add(RadarChartData(CharacteristicType.pleasure, pleasure))
-
-                binding.emotionRadarChart.setDataList(dataList)
-
-                return
-            }
-
-            binding.apply {
-                // 오늘 기록한 감정이 있다면 가져와서 보여주기
-                todayEmotionEditTextView.setText(emotionData.text)
-                happy = emotionData.happy
-                pleasure = emotionData.pleasure
-                sad = emotionData.sad
-                depressed = emotionData.depressed
-                anger = emotionData.anger
-
-                emotionSeekBar.progress = pleasure
-
-                val dataList = ArrayList<RadarChartData>()
-                dataList.add(RadarChartData(CharacteristicType.happy, happy))
-                dataList.add(RadarChartData(CharacteristicType.sad, sad))
-                dataList.add(RadarChartData(CharacteristicType.anger, anger))
-                dataList.add(RadarChartData(CharacteristicType.depressed, depressed))
-                dataList.add(RadarChartData(CharacteristicType.pleasure, pleasure))
-
-                binding.emotionRadarChart.setDataList(dataList)
-
-            }
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddEmotionBinding.bind(view)
-        val clickedDate = (activity as MainActivity).date
-        val userName = (activity as MainActivity).userName
-
-        calendarFragment = EmotionCalendar()
-
-        if(clickedDate == "" || clickedDate == LocalDate.now().toString()) {
-            val current = LocalDate.now()
-            val formattedDate = current.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
-            val date = LocalDate.now().toString()
-            val yearMonthDay = date.split("-")
-            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
-
-            binding.todayDate.text = formattedDate
-            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(LocalDate.now().toString())
-            binding.checkButton.isVisible = true
-            binding.addEmotionTitle.text = "오늘의 기분 추가하기"
-            binding.todayEmotionEditTextView.isEnabled = true
-            binding.todayEmotionSubTitle.text = "오늘의 감정 기록하기"
-            binding.todayEmotionThirdTitle.text = "기록할 감정"
-            binding.emotionSeekBar.isEnabled = true
-
-        }else{
-            val dateList = clickedDate.split("-")
-            val yearMonthDay = clickedDate.split("-")
-            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
-
-            binding.todayDate.text = "${dateList[0]}년 ${dateList[1]}월 ${dateList[2]}일"
-            (activity as MainActivity).date=""
-            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(clickedDate)
-            binding.checkButton.isVisible = false
-            binding.addEmotionTitle.text = ""
-            binding.todayEmotionEditTextView.isEnabled = false
-            binding.todayEmotionSubTitle.text = "감정 그래프"
-            binding.todayEmotionThirdTitle.text = "기록한 감정"
-            binding.emotionSeekBar.isEnabled = false
-
-        }
+        initView()
         onClickListenerInit()
-
-        emotionDB.addListenerForSingleValueEvent(listener)
         binding.emotionRadioGroup.check(R.id.pleasureButton)
         presentEmotion = R.id.pleasureButton // 다른 라디오 버튼을 클릭하기 이전의 버튼의 아이디를 저장함
-
-
 
         binding.emotionRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
@@ -166,6 +77,107 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
                 }
             }
         }
+
+    }
+    private fun initView(){
+        // 뷰 초기화
+        val clickedDate = (activity as MainActivity).date // 달력에서 클릭된 날짜를 가져옴
+        // 클릭해서 해당 프래그먼트 진입시 날짜가 저장되어 있고, 그냥 진입시 "" 가 저장되어 있음
+        val userName = (activity as MainActivity).userName
+
+        calendarFragment = EmotionCalendar()
+
+        // 그냥 들어온 경우(달력을 통해서가 아님)
+        if(clickedDate == "" || clickedDate == LocalDate.now().toString()) {
+            val current = LocalDate.now()
+            val formattedDate = current.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
+            val date = LocalDate.now().toString()
+            val yearMonthDay = date.split("-")
+            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
+
+            binding.todayDate.text = formattedDate
+            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(LocalDate.now().toString())
+            binding.checkButton.isVisible = true
+            binding.addEmotionTitle.text = "오늘의 기분 추가하기"
+            binding.todayEmotionEditTextView.isEnabled = true
+            binding.todayEmotionSubTitle.text = "오늘의 감정 기록하기"
+            binding.todayEmotionThirdTitle.text = "기록할 감정"
+            binding.emotionSeekBar.isEnabled = true
+
+        }else{ // 달력 날짜 클릭으로 들어온 경우
+            val dateList = clickedDate.split("-")
+            val yearMonthDay = clickedDate.split("-")
+            val yearMonth = "${yearMonthDay[0]}-${yearMonthDay[1]}"
+
+            binding.todayDate.text = "${dateList[0]}년 ${dateList[1]}월 ${dateList[2]}일"
+            (activity as MainActivity).date=""
+            emotionDB = Firebase.database.reference.child(userName).child("emotionRecord").child(yearMonth).child(clickedDate)
+            binding.checkButton.isVisible = false
+            binding.addEmotionTitle.text = ""
+            binding.todayEmotionEditTextView.isEnabled = false
+            binding.todayEmotionSubTitle.text = "감정 그래프"
+            binding.todayEmotionThirdTitle.text = "기록한 감정"
+            binding.emotionSeekBar.isEnabled = false
+
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            async {
+                emotionDB.get().addOnCompleteListener {
+                    val emotionData = it.result.getValue(EmotionData::class.java)
+
+                    if(emotionData == null){
+                        binding.todayEmotionEditTextView.text.clear()
+                        happy = 0
+                        pleasure = 0
+                        sad = 0
+                        depressed = 0
+                        anger = 0
+
+                        emotionSeekBar.progress = pleasure
+                        binding.emotionRadioGroup.check(R.id.pleasureButton)
+                        presentEmotion = R.id.pleasureButton // 다른 라디오 버튼을 클릭하기 이전의 버튼의 아이디를 저장함
+
+                        val dataList = ArrayList<RadarChartData>()
+                        dataList.add(RadarChartData(CharacteristicType.happy, happy))
+                        dataList.add(RadarChartData(CharacteristicType.sad, sad))
+                        dataList.add(RadarChartData(CharacteristicType.anger, anger))
+                        dataList.add(RadarChartData(CharacteristicType.depressed, depressed))
+                        dataList.add(RadarChartData(CharacteristicType.pleasure, pleasure))
+
+                        binding.emotionRadarChart.setDataList(dataList)
+                    }else {
+
+                        binding.apply {
+                            // 오늘 기록한 감정이 있다면 가져와서 보여주기
+                            todayEmotionEditTextView.setText(emotionData.text)
+                            happy = emotionData.happy
+                            pleasure = emotionData.pleasure
+                            sad = emotionData.sad
+                            depressed = emotionData.depressed
+                            anger = emotionData.anger
+
+                            emotionSeekBar.progress = pleasure
+                            binding.emotionRadioGroup.check(R.id.pleasureButton)
+                            presentEmotion =
+                                R.id.pleasureButton // 다른 라디오 버튼을 클릭하기 이전의 버튼의 아이디를 저장함
+
+                            val dataList = ArrayList<RadarChartData>()
+                            dataList.add(RadarChartData(CharacteristicType.happy, happy))
+                            dataList.add(RadarChartData(CharacteristicType.sad, sad))
+                            dataList.add(RadarChartData(CharacteristicType.anger, anger))
+                            dataList.add(RadarChartData(CharacteristicType.depressed,
+                                depressed))
+                            dataList.add(RadarChartData(CharacteristicType.pleasure, pleasure))
+
+                            binding.emotionRadarChart.setDataList(dataList)
+                        }
+                    }
+                }.addOnCanceledListener {
+
+                }
+            }
+        }
+
 
     }
     private fun savePreviousEmotion(){
@@ -280,14 +292,8 @@ class AddEmotionFragment : Fragment(R.layout.fragment_add_emotion) {
         dataList.add(RadarChartData(CharacteristicType.anger, anger))
         dataList.add(RadarChartData(CharacteristicType.depressed, depressed))
         dataList.add(RadarChartData(CharacteristicType.pleasure, pleasure))
-        Log.d("testt",pleasure.toString())
 
         binding.emotionRadarChart.setDataList(dataList)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        emotionDB.removeEventListener(listener)
-
-    }
 }

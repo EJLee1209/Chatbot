@@ -1,10 +1,12 @@
 package com.dldmswo1209.chatbot.todayTodo
 
+import java.io.Serializable
+
 data class TodoItem(
     val title: String,
     var secondTitle: String,
     var state: Int
-){
+): Serializable{
     constructor():this("","",0){}
 
     companion object{

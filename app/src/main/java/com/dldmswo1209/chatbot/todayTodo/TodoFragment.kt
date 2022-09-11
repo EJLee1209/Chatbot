@@ -54,7 +54,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             hideProgress()
         }
 
-        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+        override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+        }
 
         override fun onChildRemoved(snapshot: DataSnapshot) {
             val removeItem = snapshot.getValue(TodoItem::class.java) ?: return
