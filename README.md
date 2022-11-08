@@ -1,8 +1,8 @@
 # Chatbot
 ## [KBSC공모전]세상을 바꾸는 소프트웨어(장려상 수상작) 🥇
 
-![](https://velog.velcdn.com/images/dldmswo1209/post/8a9a1843-95fa-4729-b310-f2879ee7e3e0/image.png)
-![](https://velog.velcdn.com/images/dldmswo1209/post/6d658e6b-a3b4-4308-8353-78d87566d527/image.png)
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/8a9a1843-95fa-4729-b310-f2879ee7e3e0/image.png" width="70%"/>
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/6d658e6b-a3b4-4308-8353-78d87566d527/image.png" width="70%"/>
 
 # 📖 상세 내용
 
@@ -16,7 +16,7 @@ Uri는 모든 기능들을 하나로 연결하여, 기능별로 따로따로 하
 
 ### 심리상담 챗봇
 
-![](https://velog.velcdn.com/images/dldmswo1209/post/8dad33bd-2a55-4613-b1b3-79163836db0f/image.png)
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/8dad33bd-2a55-4613-b1b3-79163836db0f/image.png" width="70%"/>
 
 
 오늘은 무슨 일이 있었는지 이야기를 나누면서 지친 마음을 달랠 수 있습니다. <br>
@@ -24,7 +24,7 @@ Uri는 모든 기능들을 하나로 연결하여, 기능별로 따로따로 하
 
 ### 오늘의 할 일 추천
 
-![](https://velog.velcdn.com/images/dldmswo1209/post/0f0f1043-b1b3-4a78-96b9-2e693043b609/image.png)
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/0f0f1043-b1b3-4a78-96b9-2e693043b609/image.png" width="70%"/>
 
 
 Uri는 하루를 보람차게 보낼 수 있도록 5가지의 할 일을 추천해 줍니다. <br>
@@ -32,8 +32,8 @@ Uri는 하루를 보람차게 보낼 수 있도록 5가지의 할 일을 추천�
 
 ### 감정캘린더
 
-![](https://velog.velcdn.com/images/dldmswo1209/post/2535ce69-84cb-4d36-85cb-1e67e6698adc/image.png)
-![](https://velog.velcdn.com/images/dldmswo1209/post/77028bfa-31cf-49d4-a19e-ea9cb1a6f793/image.png)
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/2535ce69-84cb-4d36-85cb-1e67e6698adc/image.png" width="70%"/>
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/77028bfa-31cf-49d4-a19e-ea9cb1a6f793/image.png" width="70%"/>
 
 감정캘린더에 감정들을 기록 하게 되면, 긍정적인 감정(기쁨, 행복)과 부정적인 감정(슬픔, 우울, 분노)의 수치들을 그래프로 확인할 수 있고, <br>
 캘린더에는 긍정적인 감정이 높을수록 밝은 색상으로 표시됩니다. 보여지는 감정 색깔로 그날의 감정을 직관적으로 볼 수 있습니다. <br>
@@ -41,7 +41,7 @@ Uri는 하루를 보람차게 보낼 수 있도록 5가지의 할 일을 추천�
 마지막으로 오늘의 할 일에서, 달성한 것들을 표시해 줌으로써 성취감을 느낄 수 있게 했습니다.
 
 ### 우울증 진단
-![](https://velog.velcdn.com/images/dldmswo1209/post/a2c52e1c-13e4-418b-b362-0992b71f7ce0/image.png)
+<img src="https://velog.velcdn.com/images/dldmswo1209/post/a2c52e1c-13e4-418b-b362-0992b71f7ce0/image.png" width="70%"/>
 
 Uri는 사용자의 감정기록을 분석하여 최근 2주간 우울한 감정이 지속될 경우, 자가 진단을 제공합니다. <br>
 Uri가 제공하는 자가 진단에서 자가 진단의 점수가 높다면 한국생명의전화 사이트를 들어갈 수 있는 버튼을 제공합니다.
