@@ -58,7 +58,7 @@ Uri가 제공하는 자가 진단에서 자가 진단의 점수가 높다면 �
 
 # 🤝 Colaborators
 
-![KakaoTalk_20221108_124610057](https://user-images.githubusercontent.com/101651909/200470504-0cafe454-88e7-4015-8c49-5699f33a9d47.jpg)
+<img src="https://user-images.githubusercontent.com/101651909/200470504-0cafe454-88e7-4015-8c49-5699f33a9d47.jpg" width="70%"/>
 
 |Name|Part
 |------|---|
