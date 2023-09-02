@@ -69,7 +69,7 @@ Uri가 제공하는 자가 진단에서 자가 진단의 점수가 높다면 �
 |최재홍|챗봇 개발|
 
 
-# 시현 영상
+# 시연 영상
 
 https://www.youtube.com/watch?v=BLpkjLulnyU
 
